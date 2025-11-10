@@ -106,18 +106,27 @@ html {
   animation: logoTitlePulse 3.2s ease-in-out infinite;
 }
 
-/* Ховер — усиление эффекта */
+/* Ховер: ставим пульс на паузу и усиливаем свет */
 
 .logo:hover {
   transform: translateY(-2px);
 }
 
+.logo:hover .logo-img,
+.logo:hover .logo-title {
+  animation-play-state: paused;
+}
+
 .logo:hover .logo-img {
-  animation: logoFlash 0.45s ease-out, logoPulse 3.2s ease-in-out infinite;
+  transform: scale(1.06) rotate(-2deg);
+  filter: drop-shadow(0 0 40px rgba(255, 24, 78, 1));
 }
 
 .logo:hover .logo-title {
-  animation: logoTitleFlash 0.45s ease-out, logoTitlePulse 3.2s ease-in-out infinite;
+  transform: scale(1.04);
+  text-shadow:
+    0 0 24px rgba(255, 24, 78, 1),
+    0 0 60px rgba(255, 24, 78, 0.9);
 }
 
 .nav {
@@ -421,41 +430,6 @@ html {
   }
 }
 
-@keyframes logoFlash {
-  0% {
-    transform: scale(1.05) rotate(-2deg);
-    filter: drop-shadow(0 0 26px rgba(255, 24, 78, 0.9));
-  }
-  40% {
-    transform: scale(1.16) rotate(-4deg);
-    filter: drop-shadow(0 0 60px rgba(255, 24, 78, 1));
-  }
-  100% {
-    transform: scale(1.05) rotate(-2deg);
-    filter: drop-shadow(0 0 28px rgba(255, 24, 78, 0.95));
-  }
-}
-
-@keyframes logoTitleFlash {
-  0% {
-    transform: scale(1.02);
-    text-shadow:
-      0 0 18px rgba(255, 24, 78, 0.9),
-      0 0 30px rgba(255, 24, 78, 0.7);
-  }
-  40% {
-    transform: scale(1.12);
-    text-shadow:
-      0 0 36px rgba(255, 24, 78, 1),
-      0 0 70px rgba(255, 24, 78, 0.9);
-  }
-  100% {
-    transform: scale(1.04);
-    text-shadow:
-      0 0 16px rgba(255, 24, 78, 0.8),
-      0 0 34px rgba(255, 24, 78, 0.6);
-  }
-}
 /* MOBILE */
 
 @media (max-width: 768px) {
