@@ -109,24 +109,40 @@ html {
 /* Ховер: ставим пульс на паузу и усиливаем свет */
 
 .logo:hover {
-  transform: translateY(-2px);
-}
-
-.logo:hover .logo-img,
-.logo:hover .logo-title {
-  animation-play-state: paused;
+  transform: translateY(-1px);
 }
 
 .logo:hover .logo-img {
-  transform: scale(1.06) rotate(-2deg);
-  filter: drop-shadow(0 0 40px rgba(255, 24, 78, 1));
+  animation: none;
+  transform: scale(1.04) rotate(-4deg);
+  filter:
+    drop-shadow(0 0 30px rgba(255, 24, 78, 1))
+    drop-shadow(0 0 55px rgba(255, 24, 78, 0.65));
+  transition: transform 0.3s ease, filter 0.3s ease;
 }
 
 .logo:hover .logo-title {
-  transform: scale(1.04);
+  animation: none;
+  transform: scale(1.02) rotate(-1deg);
+  text-shadow:
+    0 0 18px rgba(255, 24, 78, 1),
+    0 0 40px rgba(255, 24, 78, 0.8);
+  transition: transform 0.3s ease, text-shadow 0.3s ease;
+}
+
+.logo:hover .logo-img {
+  transform: scale(1.06) rotate(-6deg);
+  filter: drop-shadow(0 0 45px rgba(255, 24, 78, 1))
+          drop-shadow(0 0 75px rgba(255, 24, 78, 0.7));
+  transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+.logo:hover .logo-title {
+  transform: scale(1.04) rotate(-2deg);
   text-shadow:
     0 0 24px rgba(255, 24, 78, 1),
     0 0 60px rgba(255, 24, 78, 0.9);
+  transition: transform 0.5s ease, text-shadow 0.5s ease;
 }
 
 .nav {
