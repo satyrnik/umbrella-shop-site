@@ -115,15 +115,43 @@ useEffect(() => {
 
             <div className="hero-right">
               <div className="hero-frame">
-                <div className="hero-frame-label">MAIN VISUAL // UMBRELLA SERIES</div>
-                <div className="hero-frame-placeholder">
-                  <span>Зона под ключевой визуал.</span>
-                  <span>Атлет, силуэты, лабораторный свет.</span>
-                  <span>Визуал усиливает идею: контроль, сила, статус.</span>
+                <div className="hero-frame-label">
+                  UMBRELLA // PERFORMANCE SERIES V1
                 </div>
+
+                <div className="hero-device">
+                  <div className="device-ring"></div>
+                  <div className="device-core">
+                    <div className="device-title">PRE-WORKOUT</div>
+                    <div className="device-sub">FOCUS • POWER • PUMP</div>
+                  </div>
+                </div>
+
+                <div className="hero-metrics">
+                  <div className="metric">
+                    <div className="metric-label">FOCUS</div>
+                    <div className="metric-bar">
+                      <div className="metric-bar-fill level-90"></div>
+                    </div>
+                  </div>
+                  <div className="metric">
+                    <div className="metric-label">POWER</div>
+                    <div className="metric-bar">
+                      <div className="metric-bar-fill level-100"></div>
+                    </div>
+                  </div>
+                  <div className="metric">
+                    <div className="metric-label">PURITY</div>
+                    <div className="metric-bar">
+                      <div className="metric-bar-fill level-95"></div>
+                    </div>
+                  </div>
+                </div>
+
                 <div className="hero-frame-glow"/>
               </div>
             </div>
+
           </div>
         </section>
 

@@ -12,6 +12,8 @@
   --font-main: "Audiowide", system-ui, sans-serif;
 }
 
+/* RESET */
+
 * {
   margin: 0;
   padding: 0;
@@ -41,13 +43,13 @@ body {
   font-family: var(--font-main);
 }
 
-/* ===== LAYOUT ===== */
+/* LAYOUT */
 
 .page {
   min-height: 100vh;
 }
 
-/* ===== HEADER ===== */
+/* ================= HEADER ================= */
 
 .header {
   position: sticky;
@@ -70,6 +72,8 @@ body {
   justify-content: space-between;
   gap: 24px;
 }
+
+/* LOGO */
 
 .logo {
   display: flex;
@@ -105,7 +109,7 @@ body {
   animation: logoTitlePulse 3.2s ease-in-out infinite;
 }
 
-/* hover logo */
+/* LOGO HOVER */
 
 .logo:hover {
   transform: translateY(-1px);
@@ -200,7 +204,7 @@ body {
   width: 100%;
 }
 
-/* ===== HERO ===== */
+/* ================= HERO ================= */
 
 .hero {
   padding: 70px 20px 70px;
@@ -208,7 +212,7 @@ body {
   overflow: hidden;
 }
 
-/* фон hero */
+/* HERO BACKGROUND */
 
 .hero::before {
   content: "";
@@ -237,6 +241,8 @@ body {
   z-index: 0;
 }
 
+/* HERO GRID */
+
 .hero-inner {
   position: relative;
   z-index: 1;
@@ -248,7 +254,7 @@ body {
   gap: 34px;
 }
 
-/* LEFT */
+/* ===== HERO LEFT ===== */
 
 .hero-left {
   display: flex;
@@ -258,6 +264,8 @@ body {
   gap: 28px;
   margin-top: 20px;
 }
+
+/* small label */
 
 .hero-label {
   display: inline-flex;
@@ -293,6 +301,8 @@ body {
   box-shadow: 0 0 10px rgba(255, 24, 78, 0.9);
 }
 
+/* main title */
+
 .hero-left h1 {
   font-family: "Audiowide", system-ui, sans-serif;
   font-size: 72px;
@@ -320,6 +330,8 @@ body {
     0 0 80px rgba(255, 24, 78, 0.75);
 }
 
+/* description */
+
 .hero-left p {
   font-family: "Rajdhani", sans-serif;
   font-size: 18px;
@@ -336,7 +348,7 @@ body {
   animation-delay: 0.3s;
 }
 
-/* BUTTONS */
+/* HERO BUTTONS */
 
 .hero-actions {
   display: flex;
@@ -437,11 +449,11 @@ body {
   border-color: var(--accent);
 }
 
-/* RIGHT — рамка под визуал */
+/* ===== HERO RIGHT (LAB MODULE) ===== */
 
 .hero-right {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center; /* ✅ теперь по центру всей области hero */
   opacity: 0;
   animation: fadeUpInit 0.7s ease-out forwards;
   animation-delay: 0.5s;
@@ -450,49 +462,182 @@ body {
 .hero-frame {
   position: relative;
   width: 100%;
-  max-width: 360px;
-  padding: 12px 10px 10px;
-  border-radius: 18px;
+  max-width: 520px; /* чуть шире */
+  padding: 24px 26px 22px;
+  border-radius: 24px;
   border: 1px solid var(--accent-soft);
   background:
-    radial-gradient(circle at top, rgba(255, 24, 78, 0.06), transparent),
+    radial-gradient(circle at top, rgba(255, 24, 78, 0.12), transparent 70%),
     #04040a;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.85);
+  box-shadow:
+    0 0 25px rgba(255, 24, 78, 0.2),
+    0 0 60px rgba(255, 24, 78, 0.08),
+    inset 0 0 40px rgba(255, 24, 78, 0.05); /* 💡 лёгкое внутреннее свечение */
   overflow: hidden;
+  text-align: center;
+  transition: box-shadow 0.4s ease;
 }
 
+/* при наведении усиливаем свечение */
+.hero-frame:hover {
+  box-shadow:
+    0 0 40px rgba(255, 24, 78, 0.45),
+    0 0 90px rgba(255, 24, 78, 0.25),
+    inset 0 0 50px rgba(255, 24, 78, 0.2);
+}
+
+/* надпись сверху */
 .hero-frame-label {
+  font-family: "Orbitron", sans-serif;
+  font-size: 16px; /* ✅ увеличено */
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #ffffff;
+  text-shadow:
+    0 0 16px rgba(255, 24, 78, 1),
+    0 0 40px rgba(255, 24, 78, 0.8);
+  margin-bottom: 20px;
+}
+
+/* нижняя надпись */
+.hero-tagline {
+  margin-top: 14px;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 14px; /* ✅ увеличено было 8 */
+  font-weight: 500;
+  line-height: 1.7;
+  color: #e5e5e5; /* ✅ светлее */
+  opacity: 0.96;
+  letter-spacing: 0.06em;
+  text-align: center;
+  text-transform: none;
+  text-shadow:
+    0 0 10px rgba(255, 24, 78, 0.3),
+    0 0 20px rgba(255, 24, 78, 0.15);
+}
+
+
+
+/* central device */
+
+.hero-device {
+  position: relative;
+  width: 100%;
+  height: 160px;
+  margin: 2px auto 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.device-ring {
+  position: absolute;
+  width: 145px;
+  height: 145px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 24, 78, 0.4);
+  box-shadow:
+    0 0 20px rgba(255, 24, 78, 0.55),
+    0 0 46px rgba(255, 24, 78, 0.28);
+  opacity: 0.9;
+}
+
+.device-core {
+  position: relative;
+  z-index: 2;
+  padding: 12px 18px 10px;
+  border-radius: 18px;
+  background: radial-gradient(circle at top, rgba(255, 24, 78, 0.24), #050509);
+  border: 1px solid rgba(255, 24, 78, 0.85);
+  box-shadow:
+    0 0 26px rgba(255, 24, 78, 1),
+    0 0 70px rgba(0, 0, 0, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.device-title {
+  font-family: "Orbitron", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.device-sub {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  opacity: 0.96;
+}
+
+/* metrics */
+
+.hero-metrics {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 2px 0 8px;
+}
+
+.metric {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.metric-label {
+  font-family: "Orbitron", sans-serif;
   font-size: 8px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: 8px;
+  color: #9f9f9f;
 }
 
-.hero-frame-placeholder {
-  border-radius: 14px;
-  border: 1px dashed rgba(255, 24, 78, 0.28);
-  padding: 16px 12px;
-  font-size: 10px;
-  color: var(--text-muted);
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  background: radial-gradient(circle at top, rgba(255, 24, 78, 0.08), transparent);
+.metric-bar {
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255, 24, 78, 0.12);
+  overflow: hidden;
+  position: relative;
 }
 
-.hero-frame-glow {
-  position: absolute;
-  inset: auto -40%;
-  bottom: -40px;
-  height: 80px;
-  background: radial-gradient(circle at center, rgba(255, 24, 78, 0.45), transparent);
-  opacity: 0.7;
-  mix-blend-mode: screen;
-  pointer-events: none;
+.metric-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 24, 78, 0.18),
+    var(--accent),
+    #ffffff
+  );
+  box-shadow: 0 0 14px rgba(255, 24, 78, 0.9);
+  transform-origin: left;
+  transform: scaleX(0);
+  animation: metricFill 0.7s ease-out forwards;
 }
 
-/* ===== SECTIONS ===== */
+.metric-bar-fill.level-90 {
+  --target-scale: 0.9;
+}
+
+.metric-bar-fill.level-95 {
+  --target-scale: 0.95;
+}
+
+.metric-bar-fill.level-100 {
+  --target-scale: 1;
+}
+
+/* ================= SECTIONS ================= */
 
 .section {
   padding: 40px 20px;
@@ -523,7 +668,7 @@ body {
   margin-bottom: 24px;
 }
 
-/* ===== PRODUCTS ===== */
+/* PRODUCTS */
 
 .products-grid {
   display: grid;
@@ -571,7 +716,7 @@ body {
   color: var(--text-muted);
 }
 
-/* ===== ABOUT ===== */
+/* ABOUT */
 
 .section-text {
   font-size: 13px;
@@ -580,7 +725,7 @@ body {
   line-height: 1.7;
 }
 
-/* ===== FOOTER ===== */
+/* FOOTER */
 
 .footer {
   background: #020207;
@@ -614,7 +759,7 @@ body {
   margin-top: 10px;
 }
 
-/* ===== ANIMATIONS ===== */
+/* ================= ANIMATIONS ================= */
 
 @keyframes logoPulse {
   0% {
@@ -708,7 +853,18 @@ body {
   }
 }
 
-/* ===== MOBILE ===== */
+@keyframes metricFill {
+  0% {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scaleX(var(--target-scale, 1));
+    opacity: 1;
+  }
+}
+
+/* ================= MOBILE ================= */
 
 @media (max-width: 768px) {
   .header-inner {
