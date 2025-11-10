@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { ParallaxProvider, Parallax } from "react-scroll-parallax";
 
-// Ambrella V3 — Evolution Protocol
+// Umbrella — Evolution Protocol
 // Black–Red–Gold premium theme + cinematic lab atmosphere
 // - Abstract “energy silhouettes” (no real people)
 // - Ampoule conveyor (subtle loop)
@@ -10,7 +10,7 @@ import { ParallaxProvider, Parallax } from "react-scroll-parallax";
 // - Parallax smoke + neon lines
 // - Animated emblem logo
 
-export default function AmbrellaV3() {
+export default function Umbrella() {
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 
