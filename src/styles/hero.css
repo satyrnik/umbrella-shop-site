@@ -5,6 +5,9 @@
   padding: 70px 20px 70px;
   position: relative;
   overflow: hidden;
+  min-height: calc(100vh - 90px); /* высота окна минус хедер */
+  display: flex;
+  align-items: center;
 }
 
 /* HERO BACKGROUND */
