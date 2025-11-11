@@ -1,0 +1,102 @@
+
+/* ================= ANIMATIONS ================= */
+
+@keyframes logoPulse {
+  0% {
+    filter: drop-shadow(0 0 10px rgba(255, 24, 78, 0.4));
+    transform: scale(1);
+  }
+  50% {
+    filter: drop-shadow(0 0 40px rgba(255, 24, 78, 1));
+    transform: scale(1.08);
+  }
+  100% {
+    filter: drop-shadow(0 0 10px rgba(255, 24, 78, 0.4));
+    transform: scale(1);
+  }
+}
+
+@keyframes logoTitlePulse {
+  0% {
+    text-shadow:
+      0 0 10px rgba(255, 24, 78, 0.3),
+      0 0 20px rgba(255, 24, 78, 0.1);
+  }
+  50% {
+    text-shadow:
+      0 0 22px rgba(255, 24, 78, 0.9),
+      0 0 42px rgba(255, 24, 78, 0.5);
+  }
+  100% {
+    text-shadow:
+      0 0 10px rgba(255, 24, 78, 0.3),
+      0 0 20px rgba(255, 24, 78, 0.1);
+  }
+}
+
+@keyframes labelPulse {
+  0% {
+    opacity: 0.78;
+    text-shadow:
+      0 0 8px rgba(255, 24, 78, 0.5),
+      0 0 16px rgba(255, 24, 78, 0.25);
+    box-shadow: 0 0 14px rgba(255, 24, 78, 0.22);
+  }
+  18% {
+    opacity: 1;
+    text-shadow:
+      0 0 20px rgba(255, 24, 78, 1),
+      0 0 40px rgba(255, 24, 78, 0.85);
+    box-shadow: 0 0 30px rgba(255, 24, 78, 0.42);
+  }
+  26% {
+    opacity: 0.9;
+    text-shadow:
+      0 0 12px rgba(255, 24, 78, 0.7),
+      0 0 24px rgba(255, 24, 78, 0.4);
+    box-shadow: 0 0 20px rgba(255, 24, 78, 0.3);
+  }
+  32% {
+    opacity: 1;
+    text-shadow:
+      0 0 18px rgba(255, 24, 78, 0.95),
+      0 0 36px rgba(255, 24, 78, 0.7);
+    box-shadow: 0 0 28px rgba(255, 24, 78, 0.4);
+  }
+  60% {
+    opacity: 0.83;
+    text-shadow:
+      0 0 9px rgba(255, 24, 78, 0.5),
+      0 0 18px rgba(255, 24, 78, 0.25);
+    box-shadow: 0 0 15px rgba(255, 24, 78, 0.24);
+  }
+  100% {
+    opacity: 0.78;
+    text-shadow:
+      0 0 8px rgba(255, 24, 78, 0.5),
+      0 0 16px rgba(255, 24, 78, 0.22);
+    box-shadow: 0 0 14px rgba(255, 24, 78, 0.18);
+  }
+}
+
+@keyframes fadeUpInit {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes metricFill {
+  0% {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scaleX(var(--target-scale, 1));
+    opacity: 1;
+  }
+}

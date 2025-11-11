@@ -1,0 +1,401 @@
+
+/* ================= HERO ================= */
+
+.hero {
+  padding: 70px 20px 70px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* HERO BACKGROUND */
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: -40px;
+  background:
+    radial-gradient(circle at top, rgba(255, 24, 78, 0.08), transparent 65%),
+    radial-gradient(circle at right, rgba(255, 24, 78, 0.03), transparent 55%);
+  opacity: 0.9;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+    rgba(255, 255, 255, 0.02) 1px,
+    transparent 1px
+  );
+  background-size: 100% 26px;
+  mix-blend-mode: soft-light;
+  opacity: 0.18;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* HERO GRID */
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  align-items: center;
+  gap: 34px;
+}
+
+/* ===== HERO LEFT ===== */
+
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 28px;
+  margin-top: 20px;
+}
+
+/* small label */
+
+.hero-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 8px 20px;
+  border-radius: 999px;
+  border: 1px solid var(--accent);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgba(255, 24, 78, 0.15);
+  text-shadow:
+    0 0 12px rgba(255, 24, 78, 0.8),
+    0 0 28px rgba(255, 24, 78, 0.4);
+  box-shadow: 0 0 20px rgba(255, 24, 78, 0.3);
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  animation:
+    labelPulse 3.4s cubic-bezier(0.55, 0.01, 0.24, 1) infinite,
+    fadeUpInit 0.5s ease-out forwards;
+}
+
+.hero-label::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 0 10px rgba(255, 24, 78, 0.9);
+}
+
+/* main title */
+
+.hero-left h1 {
+  font-family: "Audiowide", system-ui, sans-serif;
+  font-size: 72px;
+  font-weight: 900;
+  letter-spacing: 0.2em;
+  line-height: 1.15;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow:
+    0 0 22px rgba(255, 24, 78, 0.9),
+    0 0 56px rgba(255, 24, 78, 0.55);
+  margin-top: 8px;
+  margin-bottom: 6px;
+  opacity: 0;
+  animation: fadeUpInit 0.6s ease-out forwards;
+  animation-delay: 0.15s;
+}
+
+.hero-left h1 span {
+  display: block;
+  font-size: 76px;
+  color: var(--accent);
+  text-shadow:
+    0 0 32px rgba(255, 24, 78, 1),
+    0 0 80px rgba(255, 24, 78, 0.75);
+}
+
+/* description */
+
+.hero-left p {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  line-height: 1.8;
+  color: #c6c6c6;
+  max-width: 600px;
+  margin-top: 6px;
+  margin-bottom: 12px;
+  text-shadow: 0 0 8px rgba(255, 24, 78, 0.25);
+  opacity: 0;
+  animation: fadeUpInit 0.6s ease-out forwards;
+  animation-delay: 0.3s;
+}
+
+/* HERO BUTTONS */
+
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 14px;
+  opacity: 0;
+  animation: fadeUpInit 0.6s ease-out forwards;
+  animation-delay: 0.45s;
+}
+
+.hero-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 30px;
+  border-radius: 999px;
+  font-family: "Orbitron", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: transparent;
+  transition: all 0.25s ease;
+}
+
+.hero-btn-primary {
+  background: var(--accent);
+  color: #ffffff;
+  box-shadow: 0 0 22px rgba(255, 24, 78, 0.55);
+}
+
+.hero-btn-primary:hover {
+  box-shadow: 0 0 40px rgba(255, 24, 78, 1);
+  transform: translateY(-2px) scale(1.03);
+}
+
+.hero-btn-ghost {
+  background: transparent;
+  color: var(--accent);
+  border: 2px solid var(--accent-soft);
+}
+
+.hero-btn-ghost:hover {
+  background: var(--accent-soft);
+  color: #ffffff;
+  transform: translateY(-2px) scale(1.03);
+}
+
+/* MINI STATS */
+
+.hero-stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 18px;
+  opacity: 0;
+  animation: fadeUpInit 0.6s ease-out forwards;
+  animation-delay: 0.6s;
+}
+
+.hero-stat {
+  padding: 10px 14px 12px;
+  min-width: 160px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 24, 78, 0.28);
+  background: rgba(4, 4, 9, 0.98);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  box-shadow: 0 0 18px rgba(0, 0, 0, 0.85);
+  transition: all 0.25s ease;
+}
+
+.hero-stat-label {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.hero-stat-value {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+}
+
+.hero-stat:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 24px rgba(255, 24, 78, 0.45);
+  border-color: var(--accent);
+}
+
+/* ===== HERO RIGHT (LAB MODULE) ===== */
+
+.hero-right {
+  display: flex;
+  justify-content: center; /* ✅ теперь по центру всей области hero */
+  opacity: 0;
+  animation: fadeUpInit 0.7s ease-out forwards;
+  animation-delay: 0.5s;
+}
+
+.hero-frame {
+  position: relative;
+  width: 100%;
+  max-width: 520px; /* чуть шире */
+  padding: 24px 26px 22px;
+  border-radius: 24px;
+  border: 1px solid var(--accent-soft);
+  background:
+    radial-gradient(circle at top, rgba(255, 24, 78, 0.12), transparent 70%),
+    #04040a;
+  box-shadow:
+    0 0 25px rgba(255, 24, 78, 0.2),
+    0 0 60px rgba(255, 24, 78, 0.08),
+    inset 0 0 40px rgba(255, 24, 78, 0.05); /* 💡 лёгкое внутреннее свечение */
+  overflow: hidden;
+  text-align: center;
+  transition: box-shadow 0.4s ease;
+}
+
+/* при наведении усиливаем свечение */
+.hero-frame:hover {
+  box-shadow:
+    0 0 40px rgba(255, 24, 78, 0.45),
+    0 0 90px rgba(255, 24, 78, 0.25),
+    inset 0 0 50px rgba(255, 24, 78, 0.2);
+}
+
+
+/* central device */
+
+.hero-device {
+  position: relative;
+  width: 100%;
+  height: 160px;
+  margin: 2px auto 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.device-ring {
+  position: absolute;
+  width: 145px;
+  height: 145px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 24, 78, 0.4);
+  box-shadow:
+    0 0 20px rgba(255, 24, 78, 0.55),
+    0 0 46px rgba(255, 24, 78, 0.28);
+  opacity: 0.9;
+}
+
+.device-core {
+  position: relative;
+  z-index: 2;
+  padding: 12px 18px 10px;
+  border-radius: 18px;
+  background: radial-gradient(circle at top, rgba(255, 24, 78, 0.24), #050509);
+  border: 1px solid rgba(255, 24, 78, 0.85);
+  box-shadow:
+    0 0 26px rgba(255, 24, 78, 1),
+    0 0 70px rgba(0, 0, 0, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.device-title {
+  font-family: "Orbitron", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.device-sub {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  opacity: 0.96;
+}
+
+/* metrics */
+
+.hero-metrics {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 2px 0 8px;
+}
+
+.metric {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.metric-label {
+  font-family: "Orbitron", sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #9f9f9f;
+}
+
+.metric-bar {
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255, 24, 78, 0.12);
+  overflow: hidden;
+  position: relative;
+}
+
+.metric-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 24, 78, 0.18),
+    var(--accent),
+    #ffffff
+  );
+  box-shadow: 0 0 14px rgba(255, 24, 78, 0.9);
+  transform-origin: left;
+  transform: scaleX(0);
+  animation: metricFill 0.7s ease-out forwards;
+}
+
+.metric-bar-fill.level-90 {
+  --target-scale: 0.9;
+}
+
+.metric-bar-fill.level-95 {
+  --target-scale: 0.95;
+}
+
+.metric-bar-fill.level-100 {
+  --target-scale: 1;
+}

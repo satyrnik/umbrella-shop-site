@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import "./App.css";
+import './styles/variables.css';
+import './styles/layout.css';
+import './styles/header.css';
+import './styles/hero.css';
+import './styles/products.css';
+import './styles/about-footer.css';
+import './styles/animations.css';
 
 function App() {
   const [activeSection, setActiveSection] = useState("hero");

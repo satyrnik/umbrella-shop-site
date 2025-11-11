@@ -1,0 +1,50 @@
+:root {
+  --bg-main: #050509;
+  --bg-dark: #0b0b12;
+  --bg-light: #111119;
+  --accent: #ff184e;
+  --accent-soft: rgba(255, 24, 78, 0.18);
+  --text-main: #f5f5f5;
+  --text-muted: #9a9a9a;
+  --border-soft: rgba(255, 255, 255, 0.06);
+  --radius-lg: 18px;
+  --transition-fast: 0.25s ease;
+  --font-main: "Audiowide", system-ui, sans-serif;
+}
+
+/* RESET */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: radial-gradient(circle at top, #12121c 0, #020208 45%, #000 100%);
+  color: var(--text-main);
+  font-family: var(--font-main);
+}
+
+.header,
+.nav,
+.nav-link,
+.logo-title {
+  font-family: var(--font-main);
+}
+
+/* LAYOUT */
+
+.page {
+  min-height: 100vh;
+}
