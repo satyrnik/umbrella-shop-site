@@ -28,14 +28,17 @@ body,
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 140px; /* фикс — чтобы при переходе якорь не залезал под хедер */
 }
 
 body {
-  background: radial-gradient(circle at top, #12121c 0, #020208 45%, #000 100%);
+  background: var(--bg-main);
   color: var(--text-main);
   font-family: var(--font-main);
+  overflow-x: hidden;
 }
 
+/* HEADER / NAV / LOGO — общий стиль */
 .header,
 .nav,
 .nav-link,
@@ -47,4 +50,13 @@ body {
 
 .page {
   min-height: 100vh;
+}
+
+/* SECTIONS */
+
+section {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
 }
