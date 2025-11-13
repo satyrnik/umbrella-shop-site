@@ -1,83 +1,126 @@
-/* ================= PRODUCTS ================= */
+/* ================ PRODUCTS SECTION ================ */
 
-.section.products {
-  position: relative;
-  padding: 60px 0 90px;
-  background: linear-gradient(to bottom, #ffffff, #f8f9fb 60%, #f3f5f8);
+.products {
+  background: #ffffff;
+  color: #111;
+  font-family: var(--font-ui, "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif);
+  padding: 0px 16px 90px;
+
+  /* чтобы при клике по меню блок не заезжал под fixed-хедер */
+  scroll-margin-top: 110px;
 }
 
-.section.products .section-inner {
-  position: relative; z-index: 1;
-  max-width: 1200px; margin: 0 auto; padding: 0 20px;
+.products-inner {
+  max-width: 1120px;
+  margin: 0 auto;
 }
 
-/* Заголовки */
-.products-header { margin-bottom: 28px; display: flex; flex-direction: column; gap: 8px; }
-.section.products .section-title {
-  font-size: 28px; letter-spacing: .08em; text-transform: uppercase; color: #111;
-}
-.section.products .section-subtitle {
-  max-width: 640px; font-size: 14px; color: var(--text-muted); line-height: 1.7;
+/* ABOUT блок сверху */
+
+.products-about {
+  text-align: center;
+  margin-bottom: 52px;
 }
 
-/* GRID */
+.products-about-title {
+  margin: 0 0 18px;
+  font-size: 22px;
+  letter-spacing: 0.16em;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #b0181d;
+}
+
+.products-about-text {
+  margin: 0 auto;
+  max-width: 720px;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #41464f;
+}
+
+/* Сетка продуктов */
+
 .products-grid {
-  display: grid; gap: 20px;
-  grid-template-columns: 2fr 1fr 1fr;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 52px 36px;
 }
-@media (max-width: 960px) { .products-grid { grid-template-columns: 1fr; } }
 
-/* CARD */
 .product-card {
-  position: relative;
-  padding: 18px 18px 16px;
-  border-radius: var(--radius-lg);
-  background: var(--bg-muted);
-  border: 1px solid var(--border-soft);
-  box-shadow: 0 12px 28px rgba(0,0,0,.06);
-  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
-}
-.product-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 20px 38px rgba(0,0,0,.08);
-  border-color: rgba(229, 9, 46, .25);
+  text-align: center;
 }
 
-.product-card-main {
-  border-color: rgba(229, 9, 46, .35);
-  box-shadow: 0 20px 46px rgba(229,9,46,.08), 0 10px 26px rgba(0,0,0,.06);
+/* ===== ВЫРОВНЯЕМ КАРТИНКИ ===== */
+/* делаем “полку”: все коробки стоят на одном уровне */
+
+.product-image-wrap {
+  width: 100%;
+  height: 210px;              /* фиксированная высота области под фото */
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;      /* выравниваем по нижнему краю */
+  margin-bottom: 16px;
 }
 
-/* CONTENT */
-.product-tag {
-  display: inline-flex; padding: 4px 10px;
-  font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
-  color: var(--accent);
-  border: 1px solid rgba(229, 9, 46, .35);
-  border-radius: 999px; background: rgba(229, 9, 46, .06);
-  margin-bottom: 8px;
+.product-image {
+  max-height: 100%;           /* вписываем по высоте */
+  width: auto;                /* ширина подстраивается */
+  object-fit: contain;
 }
 
-.product-title {
-  font-size: 15px; text-transform: uppercase; letter-spacing: .14em;
-  color: #111; margin-bottom: 6px;
+/* ===== ТЕКСТ ПОД КАРТИНКОЙ ===== */
+
+.product-name {
+  margin: 4px 0 6px;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  min-height: 26px;           /* чтобы однострочные/двухстрочные имена не прыгали */
 }
 
-.product-text {
-  font-size: 13px; color: var(--text-muted); line-height: 1.7; margin-bottom: 10px;
+.product-line {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.4;
+  color: #555a61;
+  min-height: 40px;           /* выравниваем подписи по высоте */
 }
 
-.product-specs {
-  list-style: none; padding: 0; margin: 0 0 8px;
-  font-size: 12px; color: #3b3f45; display: flex; flex-direction: column; gap: 4px;
-}
-.product-specs li::before { content: "▸ "; color: var(--accent); font-size: 10px; }
+/* ================ АДАПТИВ ================ */
 
-.product-status {
-  font-size: 10px; color: #8a94a3; text-transform: uppercase; letter-spacing: .12em;
+@media (max-width: 900px) {
+  .products {
+    padding: 70px 16px 80px;
+    scroll-margin-top: 96px;
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 40px 28px;
+  }
+
+  .product-image-wrap {
+    height: 190px;
+  }
 }
 
-/* Примечание */
-.products-note {
-  margin-top: 18px; font-size: 11px; color: #8a94a3; text-transform: uppercase; letter-spacing: .12em;
+@media (max-width: 640px) {
+  .products {
+    padding: 60px 14px 70px;
+    scroll-margin-top: 88px;
+  }
+
+  .products-about {
+    margin-bottom: 40px;
+  }
+
+  .products-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .product-image-wrap {
+    height: 210px;
+  }
 }
