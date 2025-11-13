@@ -39,7 +39,7 @@
 .hero-inner::before {
   content: "";
   position: absolute;
-  top: 105px; /* примерно под логотипом, можно подвинуть при желании */
+  top: 105px; /* положение красной базы под логотипом */
   left: 50%;
   transform: translateX(-50%);
   width: 280px;
@@ -98,12 +98,8 @@
     );
 }
 
-.hero-logo:hover {
-  animation: none;
-  --p: 0.8;
-  --boost: 0.45;
-  transform: scale(1.06);
-}
+/* ВАЖНО: БЕЗ hover-эффекта — логотип продолжает пульсировать даже при наведении */
+/* Никакого animation: none и transform: scale на :hover здесь НЕТ */
 
 /* ================= ТЕКСТ ================= */
 
@@ -118,20 +114,15 @@
   display: block;
 }
 
+/* UMBRELLA — красным, БЕЗ неонового свечения и без анимации */
 .hero-title-main {
   font-family: var(--font-logo, "Orbitron", "Montserrat", sans-serif);
   font-size: 60px;
   font-weight: 900;
   letter-spacing: 0.18em;
-
-  animation: heroBrandPulse 2.3s ease-in-out infinite;
-  --boost: 0;
-
-  text-shadow:
-    0 0 calc(3px + 3px * (var(--p) + var(--boost)))
-      rgba(255, 255, 255, 0.5),
-    0 0 calc(12px + 18px * (var(--p) + var(--boost)))
-      rgba(225, 6, 0, 0.45);
+  color: #b0181d;          /* красный, как в хедере */
+  text-shadow: none;       /* убрали glow */
+  animation: none;         /* убрали пульсацию с текста */
 }
 
 .hero-title-sub {
@@ -178,6 +169,7 @@
 }
 
 .hero-cta:hover {
+  /* кнопку можно чуть усиливать при hover — это не выглядит гирляндой */
   animation: none;
   --p: 0.8;
   --boost: 0.4;
