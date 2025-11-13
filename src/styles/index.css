@@ -121,15 +121,17 @@ p,
   filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.25));
 }
 
-@media (prefers-color-scheme: dark) {
-  html,
-  body {
-    background-color: #ffffff !important;
-    color: #111111 !important;
-  }
-
-  .hero {
-    background-color: #ffffff !important;
-    color: #111111 !important;
-  }
+/* ЖЁСТКАЯ фиксация светлой темы для любых webview */
+html,
+body,
+#root {
+  background-color: #ffffff !important;
+  color: #111111 !important;
 }
+
+/* Герой точно белый */
+.hero {
+  background-color: #ffffff !important;
+  color: #111111 !important;
+}
+
