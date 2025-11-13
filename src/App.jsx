@@ -70,7 +70,7 @@ export default function App() {
               Main
             </a>
             <a href="#products" className="nav-link">
-              Goods
+              Products
             </a>
             <a href="#quality" className="nav-link">
               Quality
