@@ -2,19 +2,22 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="color-scheme" content="light">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <meta name="color-scheme" content="light" />
+
     <title>UMBRELLA shop</title>
 
     <link rel="icon" type="image/png" href="/favicon.png" />
-
-
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Russo+One&display=swap" rel="stylesheet">
-
+    <!-- Шрифты можно не подключать здесь, если они уже подключены через @import в CSS -->
   </head>
 
-  <body class="bg-white text-[#2b2b2b] font-[Montserrat,sans-serif]">
+  <body>
     <div id="root"></div>
+    <!-- Для dev всё ок: Vite сам подхватывает /src/main.jsx.
+         В билде этот тег заменится на /assets/index-XXXX.js -->
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
