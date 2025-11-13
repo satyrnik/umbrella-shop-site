@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Russo+One&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==== Палитра и шрифты (здесь же, чтобы не бегать по css файлам) ==== */
+:root{
+  --accent: #b0181d;
+  --accent-dark: #8a1115;
+  --border-soft: #e9e9ee;
+  --text: #2b2b2b;
+  --bg: #ffffff;
+
+  /* шрифты */
+  --font-ui: 'Montserrat', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  --font-head: 'Russo One', 'Montserrat', sans-serif;
+}
+
+/* База */
+html, body, #root { height: 100%; }
+body{
+  font-family: var(--font-ui);
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Заголовки — тот самый техно-ретро вайб */
+h1, h2, h3, .heading-strong, .hero-title{
+  font-family: var(--font-head);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Кнопки в духе Umbrella Labs */
+.btn{
+  @apply inline-block font-bold uppercase;
+  padding: 14px 22px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 10px 24px rgba(0,0,0,.06);
+  transition: .2s ease;
+}
+.btn:hover{ background: var(--accent-dark); transform: translateY(-1px); }
+
+/* Шапка: если используешь свои классы — пусть берут UI-шрифт (Montserrat) */
+.header, .nav, .nav-link, .logo-title{
+  font-family: var(--font-ui);
+}
+
+/* Логотип не теряется на белом: легкая тень по контуру png/svg */
+.logo-img{
+  width: 90px; height: 90px; object-fit: contain;
+  image-rendering: -webkit-optimize-contrast;
+  filter: drop-shadow(0 0 3px rgba(0,0,0,.25));
+}
+
+h1, h2, .hero-title, .section-title {
+  font-family: 'Orbitron', 'Montserrat', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #111;
+}
+
+/* Подзаголовки или описания под продуктами / блоками */
+h3, .subtitle, .product-name {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #222;
+}
+
+/* Обычные описания, тексты и параграфы */
+p, .description, .text, .paragraph {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Кнопки и CTA */
+.button, .btn {
+  font-family: 'Orbitron', 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}

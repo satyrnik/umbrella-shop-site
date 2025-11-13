@@ -1,0 +1,56 @@
+@import "./variables.css";
+
+
+main { padding-top: var(--header-h); }
+/* Общая сетка секций-заглушек */
+.section {
+  min-height: 100vh; /* на весь экран для теста */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  /* якоря не прячутся под высокий header */
+  scroll-margin-top: calc(var(--header-h) + 12px);
+}
+
+.section__inner {
+  padding: 40px 20px;
+  max-width: 900px;
+}
+
+/* Типографика под твои шрифты из header.css */
+.section__title {
+  font-family: 'Orbitron', 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 40px;
+  margin: 0 0 12px;
+  letter-spacing: .06em;
+  color: var(--accent, #b0181d);
+}
+
+.section__text {
+  font-family: var(--font-ui, 'Montserrat'), system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+  margin: 0 auto;
+  max-width: 640px;
+}
+
+/* Разные фоны, чтобы было видно переключение активного пункта */
+.section--products {
+  background: linear-gradient(180deg, #fafafa 0%, #f0f0f0 100%);
+  border-top: 1px solid #ececf2;
+}
+
+.section--about {
+  background: linear-gradient(180deg, #ffffff 0%, #ececec 100%);
+  border-top: 1px solid #ececf2;
+}
+
+/* Адаптив */
+@media (max-width: 640px) {
+  .section__title { font-size: 32px; }
+  .section__text { font-size: 15px; }
+}
