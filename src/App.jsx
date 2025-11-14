@@ -1,10 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import Hero from "./components/Hero";
 import Products from "./components/Products";
 import Quality from "./components/Quality";
 import Certificates from "./components/Certificates";
-// About убрали
 import Footer from "./components/Footer";
 
 // стили
@@ -15,8 +14,9 @@ import "./styles/quality.css";
 import "./styles/certificates.css";
 
 export default function App() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   useEffect(() => {
-    // hero / products / quality / certificates / about (теперь about = футер)
     const ids = ["hero", "products", "quality", "certificates", "about"];
 
     const sections = ids
@@ -58,7 +58,6 @@ export default function App() {
     const headerEl = document.getElementById("site-header");
 
     const handleScroll = () => {
-      // тень / blur у хедера
       if (headerEl) {
         if (window.scrollY > 10) {
           headerEl.classList.add("header-scrolled");
@@ -67,7 +66,6 @@ export default function App() {
         }
       }
 
-      // вычисляем, какая секция сейчас "главная"
       const headerOffset = headerEl ? headerEl.offsetHeight + 12 : 0;
 
       let currentId = null;
@@ -76,7 +74,6 @@ export default function App() {
       sections.forEach((sec) => {
         const rect = sec.getBoundingClientRect();
 
-        // игнорируем секции, которые совсем вне экрана
         if (rect.bottom <= headerOffset || rect.top >= window.innerHeight) {
           return;
         }
@@ -97,7 +94,7 @@ export default function App() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
 
-    // если зашли сразу по якорю (#products и т.п.) — подсветим пункт
+    // если зашли сразу по якорю (#products и т.п.)
     const initialHash = window.location.hash.replace("#", "");
     if (initialHash) {
       const target = document.getElementById(initialHash);
@@ -113,9 +110,17 @@ export default function App() {
     };
   }, []);
 
+  const handleNavClick = () => {
+    // закрываем бургер после выбора пункта
+    setMenuOpen(false);
+  };
+
   return (
     <>
-      <header id="site-header" className="header">
+      <header
+        id="site-header"
+        className={`header ${menuOpen ? "header--menu-open" : ""}`}
+      >
         <div className="header-inner">
           <a href="#hero" className="logo" aria-label="Umbrella Shop">
             <img
@@ -128,20 +133,36 @@ export default function App() {
             </span>
           </a>
 
-          <nav className="nav">
-            <a href="#hero" className="nav-link">
+          {/* Бургер для мобильных */}
+          <button
+            type="button"
+            className={`nav-toggle ${menuOpen ? "nav-toggle--open" : ""}`}
+            aria-label="Toggle navigation"
+            onClick={() => setMenuOpen((v) => !v)}
+          >
+            <span className="nav-toggle-line" />
+            <span className="nav-toggle-line" />
+            <span className="nav-toggle-line" />
+          </button>
+
+          <nav className={`nav ${menuOpen ? "nav--open" : ""}`}>
+            <a href="#hero" className="nav-link" onClick={handleNavClick}>
               Main
             </a>
-            <a href="#products" className="nav-link">
+            <a href="#products" className="nav-link" onClick={handleNavClick}>
               Products
             </a>
-            <a href="#quality" className="nav-link">
+            <a href="#quality" className="nav-link" onClick={handleNavClick}>
               Quality
             </a>
-            <a href="#certificates" className="nav-link">
+            <a
+              href="#certificates"
+              className="nav-link"
+              onClick={handleNavClick}
+            >
               Certificates
             </a>
-            <a href="#about" className="nav-link">
+            <a href="#about" className="nav-link" onClick={handleNavClick}>
               About us
             </a>
           </nav>
@@ -153,7 +174,6 @@ export default function App() {
         <Products />
         <Quality />
         <Certificates />
-        {/* <About /> — УДАЛЁН, его роль выполняет Footer с id="about" */}
       </main>
 
       <Footer />

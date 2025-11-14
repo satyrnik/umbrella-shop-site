@@ -1,5 +1,5 @@
 /* ============================================================
-   UMBRELLA HEADER — WHITE + NEON PULSE
+   UMBRELLA HEADER — WHITE + NEON PULSE + ADAPTIVE + BURGER
    ============================================================ */
 
 @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Montserrat:wght@500;600;700&display=swap");
@@ -15,8 +15,8 @@
 }
 
 /* ================= HEADER ================= */
-/* ТУТ ЖЁСТКАЯ ВЫСОТА — МЕНЯЕШЬ ТОЛЬКО ЗДЕСЬ */
-#site-header {
+/* Жёсткая высота хедера, управляем только здесь */
+#site-header.header {
   position: fixed;
   top: 0;
   left: 0;
@@ -24,17 +24,23 @@
   width: 100%;
   z-index: 9999;
 
-  height: 90px;      /* ← ХОЧЕШЬ ВЫШЕ — СТАВЬ 110px / 130px и т.д. */
+  height: 90px;
   min-height: 90px;
 
   backdrop-filter: blur(14px);
-  background: linear-gradient(to bottom, rgba(255,255,255,0.95), rgba(255,255,255,0.82));
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.95),
+    rgba(255, 255, 255, 0.82)
+  );
   border-bottom: 1px solid var(--border-soft);
   box-shadow: var(--shadow);
   font-family: var(--font-ui);
   overflow: visible;
 
-  transition: height .2s ease, padding .2s ease;
+  transition: height 0.2s ease, padding 0.2s ease,
+    background-color 0.28s ease, box-shadow 0.28s ease,
+    backdrop-filter 0.28s ease, transform 0.28s ease;
 }
 
 /* ===== INNER ===== */
@@ -47,9 +53,11 @@
   align-items: center;
   justify-content: space-between;
   gap: 24px;
+
+  transition: padding 0.26s ease, gap 0.26s ease;
 }
 
-/* ===== LOGO ===== */
+/* ===== LOGO + НЕОН ПУЛЬС ===== */
 @property --p {
   syntax: "<number>";
   inherits: true;
@@ -62,9 +70,15 @@
 }
 
 @keyframes brandPulse {
-  0%   { --p: 0; }
-  50%  { --p: 1; }
-  100% { --p: 0; }
+  0% {
+    --p: 0;
+  }
+  50% {
+    --p: 1;
+  }
+  100% {
+    --p: 0;
+  }
 }
 
 .logo {
@@ -104,8 +118,7 @@
   color: #111;
   text-shadow:
     0 0 calc(1px + 1px * (var(--p) + var(--boost)))
-      rgba(255, 255, 255, calc(0.35 + 0.15 * (var(--p) + var(--boost))))
-    ,
+      rgba(255, 255, 255, calc(0.35 + 0.15 * (var(--p) + var(--boost)))),
     0 0 calc(4px + 8px * (var(--p) + var(--boost)))
       rgba(225, 6, 0, calc(0.25 + 0.45 * (var(--p) + var(--boost))));
 }
@@ -125,7 +138,7 @@
   outline: none;
 }
 
-/* ===== NAV ===== */
+/* ===== NAV (десктоп) ===== */
 .nav {
   display: flex;
   gap: 24px;
@@ -171,7 +184,76 @@
   box-shadow: none;
 }
 
+/* ===== БУРГЕР (по умолчанию скрыт) ===== */
+.nav-toggle {
+  display: none;
+  width: 38px;
+  height: 32px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.nav-toggle-line {
+  width: 22px;
+  height: 2px;
+  background: #111;
+  border-radius: 999px;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease,
+    background-color 0.2s ease;
+}
+
+/* анимация крестика */
+.nav-toggle--open .nav-toggle-line:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.nav-toggle--open .nav-toggle-line:nth-child(2) {
+  opacity: 0;
+}
+.nav-toggle--open .nav-toggle-line:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ===== Живой хедер при скролле ===== */
+
+.header-scrolled {
+  background: rgba(5, 5, 9, 0.92); /* тёмное стекло */
+  backdrop-filter: blur(14px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55);
+}
+
+.header-scrolled .header-inner {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.header-scrolled .logo-img {
+  transform: scale(0.94);
+  transition: transform 0.26s ease;
+}
+
+.header-scrolled .logo-title {
+  transform: translateY(-1px);
+  transition: transform 0.26s ease;
+}
+
 /* ===== ADAPTIVE ===== */
+
+@media (max-width: 1200px) {
+  .header-inner {
+    padding-inline: 16px;
+  }
+}
+
 @media (max-width: 1024px) {
   .logo-img {
     width: 52px;
@@ -179,6 +261,65 @@
   }
   .logo-title {
     font-size: 24px;
+  }
+}
+
+@media (max-width: 900px) {
+  /* Чуть уменьшаем высоту шапки */
+  #site-header.header {
+    height: 78px;
+    min-height: 78px;
+  }
+
+  .header-inner {
+    padding: 10px 14px;
+    gap: 16px;
+  }
+
+  .logo-img {
+    width: 48px;
+    height: 48px;
+  }
+
+  .logo-title {
+    font-size: 20px;
+    letter-spacing: 0.14em;
+  }
+
+  /* показываем бургер */
+  .nav-toggle {
+    display: flex;
+  }
+
+  /* мобильное меню выпадает вниз вместо inline */
+  .nav {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    margin: 0;
+    padding: 12px 18px 16px;
+    background: rgba(255, 255, 255, 0.98);
+    border-bottom: 1px solid var(--border-soft);
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    z-index: 9000;
+  }
+
+  .nav--open {
+    display: flex;
+  }
+
+  .nav-link {
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    padding: 4px 0;
+  }
+
+  .nav-link::after {
+    height: 1px;
   }
 }
 
@@ -190,49 +331,13 @@
     width: 44px;
     height: 44px;
   }
+
   .nav {
-    gap: 16px;
-    font-size: 13px;
+    padding-inline: 14px;
   }
-}
 
-
-/* Живой хедер при скролле */
-
-.header {
-  /* плавные переходы состояния шапки */
-  transition:
-    background-color 0.28s ease,
-    box-shadow 0.28s ease,
-    transform 0.28s ease,
-    backdrop-filter 0.28s ease;
-}
-
-/* внутренний контейнер тоже плавный, чтобы "сжимался" */
-.header-inner {
-  transition: padding 0.26s ease, gap 0.26s ease;
-}
-
-/* состояние, когда страница прокручена вниз */
-.header-scrolled {
-  background: rgba(5, 5, 9, 0.92); /* тёмное стекло */
-  backdrop-filter: blur(14px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55);
-}
-
-/* немного ужимаем внутренние отступы, хедер становится компактнее */
-.header-scrolled .header-inner {
-  padding-top: 8px;
-  padding-bottom: 8px;
-}
-
-/* можно чуть-чуть уменьшить логотип при скролле (не обязательно) */
-.header-scrolled .logo-img {
-  transform: scale(0.94);
-  transition: transform 0.26s ease;
-}
-
-.header-scrolled .logo-title {
-  transform: translateY(-1px);
-  transition: transform 0.26s ease;
+  .nav-link {
+    font-size: 14px;
+    letter-spacing: 0.1em;
+  }
 }
