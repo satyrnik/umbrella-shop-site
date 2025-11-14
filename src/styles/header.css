@@ -129,12 +129,17 @@
 }
 
 /* hover — усиление свечения */
-.logo:hover,
-.logo:focus-visible {
+.logo:hover {
   animation: none;
   --p: 0.6;
   --boost: 0.3;
   transform: scale(1.07);
+  outline: none;
+}
+
+/* убираем любые эффекты с фокуса, чтобы не “залипало” после клика */
+.logo:focus,
+.logo:focus-visible {
   outline: none;
 }
 
