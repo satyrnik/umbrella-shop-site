@@ -15,49 +15,52 @@
 }
 
 /* ================= HEADER ================= */
-/* Жёсткая высота хедера, управляем только здесь */
 #site-header.header {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  inset: 0 0 auto 0;
   width: 100%;
   z-index: 9999;
 
   height: 90px;
   min-height: 90px;
 
-  backdrop-filter: blur(14px);
   background: linear-gradient(
     to bottom,
     rgba(255, 255, 255, 0.95),
     rgba(255, 255, 255, 0.82)
   );
+  backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border-soft);
   box-shadow: var(--shadow);
   font-family: var(--font-ui);
-  overflow: visible;
 
-  transition: height 0.2s ease, padding 0.2s ease,
-    background-color 0.28s ease, box-shadow 0.28s ease,
-    backdrop-filter 0.28s ease, transform 0.28s ease;
+  transition:
+    height .2s ease,
+    padding .2s ease,
+    background-color .28s ease,
+    box-shadow .28s ease,
+    backdrop-filter .28s ease,
+    transform .28s ease;
 }
 
-/* ===== INNER ===== */
 .header-inner {
   max-width: 1200px;
   margin: 0 auto;
   height: 100%;
   padding: 18px 24px;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 24px;
 
-  transition: padding 0.26s ease, gap 0.26s ease;
+  transition: padding .26s ease, gap .26s ease;
 }
 
-/* ===== LOGO + НЕОН ПУЛЬС ===== */
+/* ============================================================== */
+/* ====================== LOGO + PULSE ========================== */
+/* ============================================================== */
+
 @property --p {
   syntax: "<number>";
   inherits: true;
@@ -70,15 +73,9 @@
 }
 
 @keyframes brandPulse {
-  0% {
-    --p: 0;
-  }
-  50% {
-    --p: 1;
-  }
-  100% {
-    --p: 0;
-  }
+  0% { --p: 0; }
+  50% { --p: 1; }
+  100% { --p: 0; }
 }
 
 .logo {
@@ -87,9 +84,11 @@
   gap: 14px;
   text-decoration: none;
   color: inherit;
+
   transform-origin: left center;
   transition: var(--transition);
   animation: brandPulse 1.6s ease-in-out infinite;
+
   --boost: 0;
 }
 
@@ -98,14 +97,15 @@
   height: 64px;
   object-fit: contain;
   image-rendering: -webkit-optimize-contrast;
+
   filter:
     drop-shadow(
       0 0 calc(4px + 8px * (var(--p) + var(--boost)))
-        rgba(225, 6, 0, calc(0.25 + 0.35 * (var(--p) + var(--boost))))
+      rgba(225, 6, 0, calc(0.25 + 0.35 * (var(--p) + var(--boost))))
     )
     drop-shadow(
       0 0 calc(8px + 16px * (var(--p) + var(--boost)))
-        rgba(225, 6, 0, calc(0.15 + 0.25 * (var(--p) + var(--boost))))
+      rgba(225, 6, 0, calc(0.15 + 0.25 * (var(--p) + var(--boost))))
     );
 }
 
@@ -116,6 +116,7 @@
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: #111;
+
   text-shadow:
     0 0 calc(1px + 1px * (var(--p) + var(--boost)))
       rgba(255, 255, 255, calc(0.35 + 0.15 * (var(--p) + var(--boost)))),
@@ -123,27 +124,33 @@
       rgba(225, 6, 0, calc(0.25 + 0.45 * (var(--p) + var(--boost))));
 }
 
-/* UMBRELLA красным */
 .logo-red {
-  color: #b0181d;
+  color: var(--accent);
 }
 
-/* hover — усиление свечения */
-.logo:hover {
-  animation: none;
-  --p: 0.6;
-  --boost: 0.3;
-  transform: scale(1.07);
-  outline: none;
+/* Hover ТОЛЬКО на устройствах с мышкой */
+@media (hover: hover) and (pointer: fine) {
+  .logo:hover {
+    animation: none;
+    --p: 0.6;
+    --boost: 0.3;
+    transform: scale(1.07);
+  }
 }
 
-/* убираем любые эффекты с фокуса, чтобы не “залипало” после клика */
+/* На телефонах — убираем фокус, чтобы НЕ ЗАЛИПАЛО */
 .logo:focus,
 .logo:focus-visible {
   outline: none;
+  transform: none;
+  --p: 0;
+  --boost: 0;
 }
 
-/* ===== NAV (десктоп) ===== */
+/* ============================================================== */
+/* =========================== NAV ============================== */
+/* ============================================================== */
+
 .nav {
   display: flex;
   gap: 24px;
@@ -164,10 +171,12 @@
 .nav-link::after {
   content: "";
   position: absolute;
-  left: 0;
   bottom: 0;
+  left: 0;
+
+  width: 0%;
   height: 2px;
-  width: 0;
+
   background: var(--accent);
   border-radius: 2px;
   transition: width 0.25s ease;
@@ -182,28 +191,28 @@
 
 .nav-link.active {
   color: var(--accent);
-  text-shadow: none;
 }
 .nav-link.active::after {
   width: 100%;
-  box-shadow: none;
 }
 
-/* ===== БУРГЕР (по умолчанию скрыт) ===== */
+/* ============================================================== */
+/* ======================== BURGER ============================== */
+/* ============================================================== */
+
 .nav-toggle {
   display: none;
   width: 38px;
   height: 32px;
-  padding: 0;
-  margin: 0;
-  border: none;
   background: transparent;
-  cursor: pointer;
+  border: none;
 
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 5px;
+
+  cursor: pointer;
 }
 
 .nav-toggle-line {
@@ -213,25 +222,27 @@
   border-radius: 999px;
   transition:
     transform 0.2s ease,
-    opacity 0.2s ease,
-    background-color 0.2s ease;
+    opacity 0.2s ease;
 }
 
-/* анимация крестика */
 .nav-toggle--open .nav-toggle-line:nth-child(1) {
   transform: translateY(7px) rotate(45deg);
 }
+
 .nav-toggle--open .nav-toggle-line:nth-child(2) {
   opacity: 0;
 }
+
 .nav-toggle--open .nav-toggle-line:nth-child(3) {
   transform: translateY(-7px) rotate(-45deg);
 }
 
-/* ===== Живой хедер при скролле ===== */
+/* ============================================================== */
+/* ===================== SCROLLED HEADER ======================== */
+/* ============================================================== */
 
 .header-scrolled {
-  background: rgba(5, 5, 9, 0.92); /* тёмное стекло */
+  background: rgba(5, 5, 9, 0.92);
   backdrop-filter: blur(14px);
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55);
 }
@@ -243,21 +254,11 @@
 
 .header-scrolled .logo-img {
   transform: scale(0.94);
-  transition: transform 0.26s ease;
 }
 
-.header-scrolled .logo-title {
-  transform: translateY(-1px);
-  transition: transform 0.26s ease;
-}
-
-/* ===== ADAPTIVE ===== */
-
-@media (max-width: 1200px) {
-  .header-inner {
-    padding-inline: 16px;
-  }
-}
+/* ============================================================== */
+/* ========================= ADAPTIVE =========================== */
+/* ============================================================== */
 
 @media (max-width: 1024px) {
   .logo-img {
@@ -270,7 +271,6 @@
 }
 
 @media (max-width: 900px) {
-  /* Чуть уменьшаем высоту шапки */
   #site-header.header {
     height: 78px;
     min-height: 78px;
@@ -278,7 +278,6 @@
 
   .header-inner {
     padding: 10px 14px;
-    gap: 16px;
   }
 
   .logo-img {
@@ -288,59 +287,44 @@
 
   .logo-title {
     font-size: 20px;
-    letter-spacing: 0.14em;
   }
 
-  /* показываем бургер */
   .nav-toggle {
     display: flex;
   }
 
-  /* мобильное меню выпадает вниз вместо inline */
   .nav {
     position: absolute;
     top: 100%;
-    right: 0;
     left: 0;
-    margin: 0;
-    padding: 12px 18px 16px;
+    right: 0;
+
     background: rgba(255, 255, 255, 0.98);
     border-bottom: 1px solid var(--border-soft);
+    padding: 14px 18px;
+
     display: none;
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
-    z-index: 9000;
   }
 
   .nav--open {
     display: flex;
   }
-
-  .nav-link {
-    font-size: 13px;
-    letter-spacing: 0.12em;
-    padding: 4px 0;
-  }
-
-  .nav-link::after {
-    height: 1px;
-  }
 }
 
 @media (max-width: 640px) {
-
   .logo-img {
     width: 44px;
     height: 44px;
   }
 
-  .nav {
-    padding-inline: 14px;
+  .logo-title {
+    font-size: 18px;
   }
 
   .nav-link {
     font-size: 14px;
-    letter-spacing: 0.1em;
   }
 }
