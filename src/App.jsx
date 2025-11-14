@@ -4,7 +4,7 @@ import Hero from "./components/Hero";
 import Products from "./components/Products";
 import Quality from "./components/Quality";
 import Certificates from "./components/Certificates";
-import About from "./components/About";
+// About убрали
 import Footer from "./components/Footer";
 
 // стили
@@ -16,6 +16,7 @@ import "./styles/certificates.css";
 
 export default function App() {
   useEffect(() => {
+    // hero / products / quality / certificates / about (теперь about = футер)
     const ids = ["hero", "products", "quality", "certificates", "about"];
 
     const sections = ids
@@ -36,9 +37,7 @@ export default function App() {
       if (link) link.classList.add("active");
     };
 
-    // ------------------------------
-    // IntersectionObserver: только анимация появления
-    // ------------------------------
+    // IntersectionObserver — только анимация появления
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -55,9 +54,7 @@ export default function App() {
 
     sections.forEach((s) => io.observe(s));
 
-    // ------------------------------
-    // Живой header + логика активного пункта меню по скроллу
-    // ------------------------------
+    // живой header + логика активного пункта меню по скроллу
     const headerEl = document.getElementById("site-header");
 
     const handleScroll = () => {
@@ -70,7 +67,7 @@ export default function App() {
         }
       }
 
-      // расчет, какая секция сейчас "главная" в вьюпорте
+      // вычисляем, какая секция сейчас "главная"
       const headerOffset = headerEl ? headerEl.offsetHeight + 12 : 0;
 
       let currentId = null;
@@ -79,12 +76,11 @@ export default function App() {
       sections.forEach((sec) => {
         const rect = sec.getBoundingClientRect();
 
-        // игнорируем секции, которые вообще вне экрана
+        // игнорируем секции, которые совсем вне экрана
         if (rect.bottom <= headerOffset || rect.top >= window.innerHeight) {
           return;
         }
 
-        // чем ближе верх секции к низу хедера — тем "активнее" она
         const delta = Math.abs(rect.top - headerOffset);
 
         if (delta < bestDelta) {
@@ -101,7 +97,7 @@ export default function App() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
 
-    // Если зашли сразу по якорю (#products и т.п.) — подсветим пункт
+    // если зашли сразу по якорю (#products и т.п.) — подсветим пункт
     const initialHash = window.location.hash.replace("#", "");
     if (initialHash) {
       const target = document.getElementById(initialHash);
@@ -157,7 +153,7 @@ export default function App() {
         <Products />
         <Quality />
         <Certificates />
-        <About />
+        {/* <About /> — УДАЛЁН, его роль выполняет Footer с id="about" */}
       </main>
 
       <Footer />
