@@ -128,24 +128,31 @@
   color: var(--accent);
 }
 
-/* Hover ТОЛЬКО на устройствах с мышкой */
-@media (hover: hover) and (pointer: fine) {
-  .logo:hover {
-    animation: none;
-    --p: 0.6;
-    --boost: 0.3;
-    transform: scale(1.07);
-  }
+/* Ховер — для ПК: логотип + надпись слегка увеличиваются и усиливается свечение */
+.logo:hover {
+  animation: none;
+  --p: 0.6;
+  --boost: 0.3;
+  transform: scale(1.07);
 }
 
-/* На телефонах — убираем фокус, чтобы НЕ ЗАЛИПАЛО */
+/* Фокус не даёт залипания */
 .logo:focus,
 .logo:focus-visible {
   outline: none;
-  transform: none;
-  --p: 0;
-  --boost: 0;
 }
+
+/* На устройствах с тач-экранами отключаем увеличение на hover,
+   чтобы на телефонах ничего не залипало после тапа */
+@media (pointer: coarse) {
+  .logo:hover {
+    animation: brandPulse 1.6s ease-in-out infinite;
+    transform: none;
+    --p: 0;
+    --boost: 0;
+  }
+}
+
 
 /* ============================================================== */
 /* =========================== NAV ============================== */
