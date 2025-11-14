@@ -324,9 +324,7 @@
 }
 
 @media (max-width: 640px) {
-  .logo-title {
-    display: none;
-  }
+
   .logo-img {
     width: 44px;
     height: 44px;
