@@ -30,23 +30,17 @@ export default function App() {
     });
 
     const setActive = (id) => {
+      if (!id) return;
       links.forEach((a) => a.classList.remove("active"));
       const link = links.find((a) => a.getAttribute("href") === `#${id}`);
       if (link) link.classList.add("active");
     };
 
-    // OBSERVER: активный пункт меню + анимация появления секций
+    // ------------------------------
+    // IntersectionObserver: только анимация появления
+    // ------------------------------
     const io = new IntersectionObserver(
       (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-
-        if (visible[0]) {
-          const id = visible[0].target.id;
-          setActive(id);
-        }
-
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("section-visible");
@@ -54,30 +48,60 @@ export default function App() {
         });
       },
       {
-        // срабатывает раньше — когда видно хотя бы ~20% секции
         threshold: 0.2,
-        rootMargin: "0px 0px -35% 0px",
+        rootMargin: "0px 0px -20% 0px",
       }
     );
 
     sections.forEach((s) => io.observe(s));
 
-    // живой header (blur/тень при скролле)
+    // ------------------------------
+    // Живой header + логика активного пункта меню по скроллу
+    // ------------------------------
     const headerEl = document.getElementById("site-header");
+
     const handleScroll = () => {
-      if (!headerEl) return;
-      if (window.scrollY > 10) {
-        headerEl.classList.add("header-scrolled");
-      } else {
-        headerEl.classList.remove("header-scrolled");
+      // тень / blur у хедера
+      if (headerEl) {
+        if (window.scrollY > 10) {
+          headerEl.classList.add("header-scrolled");
+        } else {
+          headerEl.classList.remove("header-scrolled");
+        }
+      }
+
+      // расчет, какая секция сейчас "главная" в вьюпорте
+      const headerOffset = headerEl ? headerEl.offsetHeight + 12 : 0;
+
+      let currentId = null;
+      let bestDelta = Infinity;
+
+      sections.forEach((sec) => {
+        const rect = sec.getBoundingClientRect();
+
+        // игнорируем секции, которые вообще вне экрана
+        if (rect.bottom <= headerOffset || rect.top >= window.innerHeight) {
+          return;
+        }
+
+        // чем ближе верх секции к низу хедера — тем "активнее" она
+        const delta = Math.abs(rect.top - headerOffset);
+
+        if (delta < bestDelta) {
+          bestDelta = delta;
+          currentId = sec.id;
+        }
+      });
+
+      if (currentId) {
+        setActive(currentId);
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
 
-    // Если зашли сразу по якорю (#products и т.п.) —
-    // делаем эту секцию видимой сразу, чтобы она не оставалась полупрозрачной
+    // Если зашли сразу по якорю (#products и т.п.) — подсветим пункт
     const initialHash = window.location.hash.replace("#", "");
     if (initialHash) {
       const target = document.getElementById(initialHash);
