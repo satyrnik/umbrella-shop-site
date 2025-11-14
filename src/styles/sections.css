@@ -1,10 +1,17 @@
 @import "./variables.css";
 
+/* =========================================================
+   БАЗОВАЯ РАЗМЕТКА: MAIN + СЕКЦИИ
+   ========================================================= */
 
-main { padding-top: var(--header-h); }
-/* Общая сетка секций-заглушек */
+/* Отступ сверху под фиксированный header */
+main {
+  padding-top: var(--header-h);
+}
+
+/* Базовая сетка секций (если где-то используешь .section) */
 .section {
-  min-height: 100vh; /* на весь экран для теста */
+  min-height: 100vh; /* секция на весь экран */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -15,22 +22,26 @@ main { padding-top: var(--header-h); }
 }
 
 .section__inner {
-  padding: 40px 20px;
   max-width: 900px;
+  padding: 40px 20px;
 }
 
-/* Типографика под твои шрифты из header.css */
+/* =========================================================
+   ТИПОГРАФИКА СЕКЦИЙ
+   ========================================================= */
+
 .section__title {
-  font-family: 'Orbitron', 'Montserrat', sans-serif;
+  font-family: "Orbitron", "Montserrat", sans-serif;
   font-weight: 700;
   font-size: 40px;
   margin: 0 0 12px;
-  letter-spacing: .06em;
+  letter-spacing: 0.06em;
   color: var(--accent, #b0181d);
 }
 
 .section__text {
-  font-family: var(--font-ui, 'Montserrat'), system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  font-family: var(--font-ui, "Montserrat"), system-ui, -apple-system,
+    "Segoe UI", Roboto, Arial, sans-serif;
   font-size: 16px;
   line-height: 1.6;
   color: #333;
@@ -38,7 +49,10 @@ main { padding-top: var(--header-h); }
   max-width: 640px;
 }
 
-/* Разные фоны, чтобы было видно переключение активного пункта */
+/* =========================================================
+   ВИЗУАЛЬНЫЕ МОДИФИКАТОРЫ (ФОНЫ ДЛЯ БЛОКОВ)
+   ========================================================= */
+
 .section--products {
   background: linear-gradient(180deg, #fafafa 0%, #f0f0f0 100%);
   border-top: 1px solid #ececf2;
@@ -49,8 +63,47 @@ main { padding-top: var(--header-h); }
   border-top: 1px solid #ececf2;
 }
 
-/* Адаптив */
+/* =========================================================
+   АНИМАЦИЯ ПОЯВЛЕНИЯ СЕКЦИЙ
+   ========================================================= */
+
+/* Исходное состояние: секция немного "приглушена" */
+.section-anim {
+  opacity: 0.25; /* было 0 — вообще пусто; так мягче */
+  transform: none; /* ВАЖНО: без translateY, чтобы не сбивать якоря */
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  will-change: opacity, transform;
+}
+
+/* Когда секция попала в зону видимости */
+.section-visible {
+  opacity: 1;
+  transform: translateY(0); /* по факту = none, но оставим для совместимости */
+}
+
+/* =========================================================
+   ДОП. ОТСТУПЫ ДЛЯ КОНКРЕТНЫХ ЯКОРЕЙ
+   (если секции не используют .section, это их спасёт)
+   ========================================================= */
+
+#hero,
+#products,
+#quality,
+#certificates,
+#about {
+  scroll-margin-top: 90px; /* подгони под свой реальный header при необходимости */
+}
+
+/* =========================================================
+   АДАПТИВ
+   ========================================================= */
+
 @media (max-width: 640px) {
-  .section__title { font-size: 32px; }
-  .section__text { font-size: 15px; }
+  .section__title {
+    font-size: 32px;
+  }
+
+  .section__text {
+    font-size: 15px;
+  }
 }

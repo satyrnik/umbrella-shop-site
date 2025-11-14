@@ -1,5 +1,5 @@
 /* ====== ШРИФТЫ ====== */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Orbitron:wght@600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Orbitron:wght@600;700&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -13,19 +13,21 @@
 
   --text: #2b2b2b;
   --text-strong: #111111;
-  --bg: #ffffff;       /* базовый фон секций */
-  --bg-page: #f5f5f5;  /* общий фон страницы */
+  --bg: #ffffff;      /* фон секций */
+  --bg-page: #ffffff; /* общий фон страницы */
 
-  --font-ui: 'Montserrat', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
-  --font-head: 'Orbitron', 'Montserrat', sans-serif;
+  --font-ui: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, Arial,
+    sans-serif;
+  --font-head: "Orbitron", "Montserrat", sans-serif;
 }
 
 /* ====== БАЗА / ГЛОБАЛ ====== */
 
-/* Подсказываем браузерам: сайт СВЕТЛЫЙ, не включайте авто-дарк */
+/* Подсказываем браузерам и webview: сайт СВЕТЛЫЙ */
 html {
   color-scheme: light;
   background-color: var(--bg-page);
+  scroll-behavior: smooth; /* плавный скролл по якорям */
 }
 
 html,
@@ -41,6 +43,8 @@ body {
   background-color: var(--bg-page);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 /* ====== ТИПОГРАФИКА ====== */
@@ -112,7 +116,7 @@ p,
   font-family: var(--font-ui);
 }
 
-/* ЛОГОТИП, чтобы не терялся на светлом фоне */
+/* ЛОГОТИП — не теряется на светлом фоне */
 .logo-img {
   width: 90px;
   height: 90px;
@@ -121,17 +125,8 @@ p,
   filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.25));
 }
 
-/* ЖЁСТКАЯ фиксация светлой темы для любых webview */
-html,
-body,
-#root {
-  background-color: #ffffff !important;
-  color: #111111 !important;
-}
-
-/* Герой точно белый */
+/* Герой точно белый (под аптечную тему) */
 .hero {
-  background-color: #ffffff !important;
-  color: #111111 !important;
+  background-color: #ffffff;
+  color: #111111;
 }
-

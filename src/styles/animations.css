@@ -20,3 +20,23 @@
 .logo-img { animation: none !important; }
 .logo-title { animation: none !important; }
 */
+
+/* плавный скролл по умолчанию для якорей */
+html {
+  scroll-behavior: smooth;
+}
+
+/* базовое состояние секций — чуть ниже и прозрачные */
+.section-anim {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
+}
+
+/* когда секция попадает в зону видимости — “подъезжает” */
+.section-anim.section-visible {
+  opacity: 1;
+  transform: translateY(0);
+}

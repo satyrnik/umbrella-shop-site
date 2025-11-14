@@ -195,3 +195,44 @@
     font-size: 13px;
   }
 }
+
+
+/* Живой хедер при скролле */
+
+.header {
+  /* плавные переходы состояния шапки */
+  transition:
+    background-color 0.28s ease,
+    box-shadow 0.28s ease,
+    transform 0.28s ease,
+    backdrop-filter 0.28s ease;
+}
+
+/* внутренний контейнер тоже плавный, чтобы "сжимался" */
+.header-inner {
+  transition: padding 0.26s ease, gap 0.26s ease;
+}
+
+/* состояние, когда страница прокручена вниз */
+.header-scrolled {
+  background: rgba(5, 5, 9, 0.92); /* тёмное стекло */
+  backdrop-filter: blur(14px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55);
+}
+
+/* немного ужимаем внутренние отступы, хедер становится компактнее */
+.header-scrolled .header-inner {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+/* можно чуть-чуть уменьшить логотип при скролле (не обязательно) */
+.header-scrolled .logo-img {
+  transform: scale(0.94);
+  transition: transform 0.26s ease;
+}
+
+.header-scrolled .logo-title {
+  transform: translateY(-1px);
+  transition: transform 0.26s ease;
+}
