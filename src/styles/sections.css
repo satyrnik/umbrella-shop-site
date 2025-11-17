@@ -72,7 +72,6 @@ main {
   opacity: 0.25; /* было 0 — вообще пусто; так мягче */
   transform: none; /* ВАЖНО: без translateY, чтобы не сбивать якоря */
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-  will-change: opacity, transform;
 }
 
 /* Когда секция попала в зону видимости */
@@ -98,6 +97,16 @@ main {
    АДАПТИВ
    ========================================================= */
 
+@media (max-width: 940px) {
+  #hero,
+  #products,
+  #quality,
+  #certificates,
+  #about {
+    scroll-margin-top: 78px; /* под хедер 78px + небольшой запас */
+  }
+}
+
 @media (max-width: 640px) {
   .section__title {
     font-size: 32px;
@@ -107,3 +116,6 @@ main {
     font-size: 15px;
   }
 }
+
+
+

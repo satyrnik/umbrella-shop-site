@@ -330,3 +330,8 @@
     grid-column: auto;
   }
 }
+
+
+#certificates {
+  margin-bottom: 0 !important;
+}
