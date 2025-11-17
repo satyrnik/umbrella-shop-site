@@ -1,41 +1,18 @@
-/* ================== QUALITY SECTION ================== */
+/* ================== QUALITY SECTION (LAB BACKGROUND) ================== */
 
 .quality {
   position: relative;
   padding: 90px 20px 100px;
-  background: #f8fafc;
-  color: #111;
+
+  background:
+    #050509
+    url("/img/products/quality-conveyor.jpg") center center / cover no-repeat;
+
+  color: #ffffff;
   overflow: hidden;
-
-  /* Лёгкая “сетка” на фоне, как тех-узор */
-  background-image:
-    linear-gradient(
-      120deg,
-      rgba(176, 24, 29, 0.08) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      -120deg,
-      rgba(176, 24, 29, 0.03) 1px,
-      transparent 1px
-    );
-  background-size: 120px 120px, 160px 160px;
 }
 
-/* Красное свечение сверху */
-.quality::before {
-  content: "";
-  position: absolute;
-  inset: -120px -40px auto;
-  background: radial-gradient(
-    circle at top,
-    rgba(176, 24, 29, 0.28),
-    transparent 60%
-  );
-  pointer-events: none;
-}
-
-/* Легкая красная линия по низу */
+/* тонкая красная линия внизу секции */
 .quality::after {
   content: "";
   position: absolute;
@@ -50,8 +27,10 @@
     transparent
   );
   filter: blur(0.6px);
+  z-index: 2;
 }
 
+/* основной контейнер */
 .quality-inner {
   position: relative;
   max-width: 1160px;
@@ -60,10 +39,14 @@
   grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.3fr);
   gap: 40px;
   align-items: center;
-  z-index: 1;
+  z-index: 3; /* выше линии и фона */
 }
 
-/* ===== ТЕКСТ СЛЕВА ===== */
+/* ===== ЛЕВАЯ ЧАСТЬ — ТЕКСТ ===== */
+
+.quality-left {
+  position: relative;
+}
 
 .quality-kicker {
   display: inline-flex;
@@ -73,7 +56,7 @@
   letter-spacing: 0.16em;
   text-transform: uppercase;
   font-weight: 600;
-  color: #b0181d;
+  color: #ff4b4b;
   margin-bottom: 12px;
 }
 
@@ -95,15 +78,19 @@
   margin: 0 0 14px;
   letter-spacing: 0.04em;
   text-transform: uppercase;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
 }
 
 .quality-subtitle {
   margin: 0 0 24px;
   font-size: 14px;
-  line-height: 1.6;
-  color: #555b66;
+  line-height: 1.7;
+  color: #e4e7f2; /* светлый, не сливается с фоном */
   max-width: 420px;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
 }
+
+/* бейджи под заголовком */
 
 .quality-badges {
   display: flex;
@@ -115,16 +102,16 @@
   position: relative;
   padding: 10px 14px;
   border-radius: 999px;
-  border: 1px solid rgba(176, 24, 29, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.65);
   background: radial-gradient(
       circle at top left,
       rgba(176, 24, 29, 0.15),
       transparent 55%
     ),
-    #ffffff;
+    rgba(255, 255, 255, 0.96);
   box-shadow:
-    0 8px 24px rgba(0, 0, 0, 0.08),
-    0 0 0 1px rgba(255, 255, 255, 0.8);
+    0 8px 24px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(255, 255, 255, 0.9);
   display: inline-flex;
   flex-direction: column;
 }
@@ -132,16 +119,17 @@
 .quality-badge-label {
   font-size: 13px;
   font-weight: 700;
+  color: #111827;
 }
 
 .quality-badge-sub {
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  opacity: 0.75;
+  color: #6b7280;
 }
 
-/* ===== ПРАВЫЙ БЛОК — КАРТОЧКИ С ГОLOGRAM ===== */
+/* ===== ПРАВАЯ ЧАСТЬ — КАРТОЧКИ ===== */
 
 .quality-right {
   display: grid;
@@ -156,12 +144,12 @@
   border-radius: 18px;
   background: radial-gradient(
       circle at top,
-      rgba(255, 255, 255, 0.96),
+      rgba(255, 255, 255, 0.98),
       #f1f3f7
     );
   border: 1px solid rgba(176, 24, 29, 0.22);
   box-shadow:
-    0 12px 30px rgba(0, 0, 0, 0.12),
+    0 12px 30px rgba(0, 0, 0, 0.35),
     0 0 0 1px rgba(255, 255, 255, 0.7);
   overflow: hidden;
   transition:
@@ -173,9 +161,9 @@
 .quality-card:hover {
   transform: translateY(-4px);
   box-shadow:
-    0 16px 40px rgba(0, 0, 0, 0.18),
-    0 0 0 1px rgba(176, 24, 29, 0.25);
-  border-color: rgba(176, 24, 29, 0.6);
+    0 16px 40px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(176, 24, 29, 0.35);
+  border-color: rgba(176, 24, 29, 0.65);
 }
 
 .quality-card--wide {
@@ -188,6 +176,7 @@
   font-size: 15px;
   font-weight: 700;
   margin: 0 0 8px;
+  color: #111827; /* явный тёмный текст на белой карточке */
 }
 
 .quality-card-text {
@@ -195,7 +184,7 @@
   margin: 0;
   font-size: 13px;
   line-height: 1.6;
-  color: #454b57;
+  color: #2f3542;
 }
 
 .quality-list {
@@ -210,142 +199,7 @@
   margin-top: 4px;
 }
 
-/* ===== КРАСНЫЕ ГОLOGRAM-ЭФФЕКТЫ ===== */
-
-/* светящиеся кольца, которые “висят” над картой */
-.quality-holo-ring {
-  position: absolute;
-  width: 130px;
-  height: 130px;
-  border-radius: 999px;
-  border: 1px solid rgba(176, 24, 29, 0.8);
-  box-shadow:
-    0 0 22px rgba(176, 24, 29, 0.95),
-    0 0 50px rgba(176, 24, 29, 0.6);
-  opacity: 0.35;
-  filter: blur(0.2px);
-  pointer-events: none;
-}
-
-/* орбита на широкой карточке */
-.quality-holo-orbit {
-  position: absolute;
-  right: -60px;
-  top: -60px;
-  width: 190px;
-  height: 190px;
-  border-radius: 50%;
-  border: 1px dashed rgba(176, 24, 29, 0.9);
-  box-shadow:
-    0 0 28px rgba(176, 24, 29, 0.95),
-    0 0 75px rgba(176, 24, 29, 0.55);
-  opacity: 0.32;
-  pointer-events: none;
-}
-
-/* тонкие “лазерные” линии */
-.quality-holo-line {
-  position: absolute;
-  width: 1px;
-  height: 120%;
-  background: linear-gradient(
-    to bottom,
-    transparent,
-    rgba(176, 24, 29, 0.9),
-    transparent
-  );
-  opacity: 0.8;
-  pointer-events: none;
-}
-
-.quality-holo-line--left {
-  left: 18%;
-  top: -10%;
-}
-
-.quality-holo-line--right {
-  right: 14%;
-  top: -15%;
-}
-
-.quality-holo-ring--top {
-  top: -45px;
-  right: -40px;
-}
-
-.quality-holo-ring--bottom {
-  bottom: -55px;
-  left: -30px;
-}
-
-/* “сеточка” под текстом как голографический слой */
-.quality-holo-grid {
-  position: absolute;
-  inset: 24% 10% 10% 6%; /* сделали больше площадь */
-  background-image:
-    linear-gradient(
-      90deg,
-      rgba(176, 24, 29, 0.18) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      0deg,
-      rgba(176, 24, 29, 0.18) 1px,
-      transparent 1px
-    );
-  background-size: 8px 8px;
-  opacity: 0.45;
-  mix-blend-mode: multiply;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-/* красный "лазер", сканирующий сетку */
-.quality-holo-grid::after {
-  content: "";
-  position: absolute;
-  left: -20%;
-  right: -20%;
-  height: 5px; /* было 2–3px, сделали толще */
-  top: -10%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.3),
-    rgba(255, 66, 93, 1),
-    rgba(255, 255, 255, 0.3),
-    transparent
-  );
-  box-shadow: 0 0 18px rgba(255, 66, 93, 1);
-  animation: quality-holo-scan 2.2s linear infinite;
-}
-
-@keyframes quality-holo-scan {
-  0% {
-    top: -10%;
-  }
-  100% {
-    top: 110%;
-  }
-}
-
-
-@keyframes quality-holo-orbit-motion {
-  0% {
-    transform: translateY(8px) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-12px) rotate(180deg);
-  }
-  100% {
-    transform: translateY(8px) rotate(360deg);
-  }
-}
-
-.quality-holo-ring,
-.quality-holo-orbit {
-  animation: quality-holo-orbit-motion 14s linear infinite;
-}
+/* ===== ГОLOGRAM-ЭФФЕКТЫ ===== */
 
 .quality-holo-ring {
   position: absolute;
@@ -376,6 +230,98 @@
   pointer-events: none;
 }
 
+/* тонкие “лазерные” линии */
+.quality-holo-line {
+  position: absolute;
+  width: 1px;
+  height: 120%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(176, 24, 29, 0.9),
+    transparent
+  );
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.quality-holo-line--left {
+  left: 18%;
+  top: -10%;
+}
+
+.quality-holo-line--right {
+  right: 14%;
+  top: -15%;
+}
+
+/* “сеточка” под текстом как голографический слой */
+.quality-holo-grid {
+  position: absolute;
+  inset: 24% 10% 10% 6%;
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(176, 24, 29, 0.18) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      0deg,
+      rgba(176, 24, 29, 0.18) 1px,
+      transparent 1px
+    );
+  background-size: 8px 8px;
+  opacity: 0.45;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* красный "лазер", сканирующий сетку */
+.quality-holo-grid::after {
+  content: "";
+  position: absolute;
+  left: -20%;
+  right: -20%;
+  height: 5px;
+  top: -10%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    rgba(255, 66, 93, 1),
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  box-shadow: 0 0 18px rgba(255, 66, 93, 1);
+  animation: quality-holo-scan 2.2s linear infinite;
+}
+
+@keyframes quality-holo-scan {
+  0% {
+    top: -10%;
+  }
+  100% {
+    top: 110%;
+  }
+}
+
+@keyframes quality-holo-orbit-motion {
+  0% {
+    transform: translateY(8px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(180deg);
+  }
+  100% {
+    transform: translateY(8px) rotate(360deg);
+  }
+}
+
+.quality-holo-ring,
+.quality-holo-orbit {
+  animation: quality-holo-orbit-motion 14s linear infinite;
+}
 
 /* ===== АДАПТИВ ===== */
 

@@ -1,33 +1,73 @@
 /* ================= HERO (главный экран) ================= */
 
 .hero {
+  position: relative;
   min-height: 100vh;
-  padding: 50px 16px 0px;
+  padding: 110px 16px 72px; /* под фиксированный хедер */
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
 
-  position: relative;
-  background: #ffffff;
-  color: #111;
-  font-family: var(--font-ui, "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif);
+  color: #ffffff;
+  font-family: var(
+    --font-ui,
+    "Montserrat",
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    Arial,
+    sans-serif
+  );
+
+  background:
+    #050509
+    url("/img/hero-superlab.jpg") center center / cover no-repeat;
+  overflow: hidden;
 }
 
+/* затемняющий/красный градиент поверх картинки,
+   чтобы текст читался и фон не был пересвечен */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(220, 24, 40, 0.30), transparent 55%),
+    linear-gradient(
+      90deg,
+      rgba(5, 7, 20, 0.96),
+      rgba(5, 7, 20, 0.70),
+      rgba(5, 7, 20, 0.25)
+    );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* контейнер как у хедера (header-inner) */
 .hero-inner {
-  max-width: 820px;
-  margin: 0 auto;
-
   position: relative;
-  opacity: 0;
-  animation: heroFadeIn 0.85s ease-out forwards;
+  z-index: 2;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+
+  display: flex;
+  justify-content: flex-start;
 }
 
-/* мягкое появление всего блока hero */
+.hero-content {
+  max-width: 560px;
+  opacity: 0;
+  transform: translateY(18px);
+  animation: heroFadeIn 0.9s ease-out forwards;
+}
+
+/* мягкое появление блока */
 @keyframes heroFadeIn {
   0% {
     opacity: 0;
-    transform: translateY(18px) scale(0.97);
+    transform: translateY(18px) scale(0.98);
   }
   100% {
     opacity: 1;
@@ -35,190 +75,235 @@
   }
 }
 
-/* мягкая “база” подсветки под логотипом */
-.hero-inner::before {
-  content: "";
-  position: absolute;
-  top: 105px; /* положение красной базы под логотипом */
-  left: 50%;
-  transform: translateX(-50%);
-  width: 280px;
-  height: 42px;
+/* ================= БЕЙДЖ-СУБТАЙТЛ ================= */
 
-  background: radial-gradient(
-    ellipse at center,
-    rgba(220, 25, 40, 0.55) 0%,
-    rgba(220, 25, 40, 0.22) 35%,
-    transparent 75%
-  );
-  filter: blur(10px);
-  opacity: 0.9;
-  pointer-events: none;
+.hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 6px 14px;
+  border-radius: 999px;
+
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(10px);
 }
 
-/* ================= НЕОНОВАЯ ПУЛЬСАЦИЯ (как в хедере) ================= */
-
-@property --p {
-  syntax: "<number>";
-  inherits: true;
-  initial-value: 0;
-}
-@property --boost {
-  syntax: "<number>";
-  inherits: true;
-  initial-value: 0;
-}
-
-@keyframes heroBrandPulse {
-  0%   { --p: 0; }
-  50%  { --p: 1; }
-  100% { --p: 0; }
-}
-
-/* ================= ЛОГОТИП ================= */
-
-.hero-logo {
-  width: 300px;
-  max-width: 70vw;
-  margin: 0 auto 40px;
-  display: block;
-
-  animation: heroBrandPulse 2s ease-in-out infinite;
-  transform-origin: center;
-  --boost: 0;
-
-  filter:
-    drop-shadow(
-      0 0 calc(6px + 10px * (var(--p) + var(--boost)))
-        rgba(225, 6, 0, calc(0.35 + 0.35 * (var(--p) + var(--boost))))
-    )
-    drop-shadow(
-      0 0 calc(14px + 20px * (var(--p) + var(--boost)))
-        rgba(225, 6, 0, calc(0.25 + 0.45 * (var(--p) + var(--boost))))
-    );
-}
-
-/* ВАЖНО: БЕЗ hover-эффекта — логотип продолжает пульсировать даже при наведении */
-/* Никакого animation: none и transform: scale на :hover здесь НЕТ */
-
-/* ================= ТЕКСТ ================= */
+/* ================= ЗАГОЛОВОК ================= */
+/* как quality-title: Orbitron + верхний регистр */
 
 .hero-title {
-  margin: 0 0 18px;
-  line-height: 1.1;
+  margin: 22px 0 18px;
+  line-height: 1.15;
   text-transform: uppercase;
+  font-family: var(--font-logo, "Orbitron", "Montserrat", system-ui);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #f3f3f3;
+  max-width: 620px;
 }
 
+.hero-title span {
+  display: inline;
+}
+
+/* слово UMBRELLA — красное и чуть жирнее */
+.hero-title .hero-red {
+  color: var(--accent);
+  font-weight: 800;
+}
+
+/* если используешь hero-title-main / hero-title-sub — они крупнее */
 .hero-title-main,
 .hero-title-sub {
-  display: block;
+  font-size: 32px;
 }
 
-/* UMBRELLA — красным, БЕЗ неонового свечения и без анимации */
-.hero-title-main {
-  font-family: var(--font-logo, "Orbitron", "Montserrat", sans-serif);
-  font-size: 60px;
-  font-weight: 900;
-  letter-spacing: 0.18em;
-  color: #b0181d;          /* красный, как в хедере */
-  text-shadow: none;       /* убрали glow */
-  animation: none;         /* убрали пульсацию с текста */
-}
-
-.hero-title-sub {
-  font-size: 34px;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  color: #333;
-}
-
-/* ================= ПОДЗАГОЛОВОК ================= */
+/* ================= ТЕКСТ ПОД ЗАГОЛОВКОМ ================= */
 
 .hero-tagline {
-  margin: 0 0 36px;
-  font-size: 22px;
-  color: #555a61;
+  margin: 14px 0 30px;
+  font-size: 20px;
+  line-height: 1.5;
+  color: #d0d0d0;
+  max-width: 520px;
+  font-weight: 500;
+  font-family: var(--font-ui, "Montserrat", system-ui, sans-serif);
 }
 
-/* ================= КНОПКА (неоновая) ================= */
+/* hero-text и hero-description стилизуем одинаково */
+.hero-text,
+.hero-description {
+  margin: 0 0 36px;
+  font-size: 18px;
+  line-height: 1.55;
+  color: #d0d0d0;
+  max-width: 520px;
+  font-family: var(--font-ui, "Montserrat", system-ui, sans-serif);
+}
 
-.hero-cta {
+/* ================= КНОПКИ ================= */
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+/* основная CTA-кнопка */
+.hero-cta-main {
   display: inline-flex;
   align-items: center;
   justify-content: center;
 
-  padding: 18px 46px;
+  padding: 15px 34px;
   border-radius: 999px;
-  font-size: 20px;
+
+  font-size: 16px;
   font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
   text-decoration: none;
-
-  color: #fff;
-  background: #b3181d;
-
-  animation: heroBrandPulse 2s ease-in-out infinite;
-  --boost: 0;
+  color: #ffffff;
+  background: linear-gradient(135deg, #b0181d, #ff4343);
 
   box-shadow:
-    0 0 calc(6px + 12px * (var(--p) + var(--boost)))
-      rgba(176, 24, 29, 0.55),
-    0 0 calc(12px + 26px * (var(--p) + var(--boost)))
-      rgba(176, 24, 29, 0.45);
+    0 0 18px rgba(255, 56, 76, 0.55),
+    0 0 42px rgba(255, 56, 76, 0.45);
+  border: none;
 
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
 }
 
-.hero-cta:hover {
-  /* кнопку можно чуть усиливать при hover — это не выглядит гирляндой */
-  animation: none;
-  --p: 0.8;
-  --boost: 0.4;
-  transform: scale(1.06);
-
+.hero-cta-main:hover {
+  transform: translateY(-1px) scale(1.04);
   box-shadow:
-    0 0 26px rgba(176, 24, 29, 0.75),
-    0 0 48px rgba(176, 24, 29, 0.55);
+    0 0 26px rgba(255, 56, 76, 0.8),
+    0 0 55px rgba(255, 56, 76, 0.6);
+  filter: saturate(1.1);
+}
+
+/* вторичная кнопка */
+.hero-cta-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 15px 26px;
+  border-radius: 999px;
+
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  color: rgba(255, 255, 255, 0.85);
+  background: rgba(4, 8, 22, 0.6);
+  backdrop-filter: blur(12px);
+
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease,
+    transform 0.18s ease;
+}
+
+.hero-cta-ghost:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.7);
+  transform: translateY(-1px);
+}
+
+/* ================= ПРИМЕЧАНИЕ ================= */
+
+.hero-note {
+  margin: 8px 0 0;
+  font-size: 12px;
+  line-height: 1.5;
+  max-width: 480px;
+  color: rgba(220, 225, 235, 0.75);
+  font-family: var(--font-ui, "Montserrat", system-ui, sans-serif);
 }
 
 /* ================= АДАПТИВ ================= */
 
-@media (max-width: 768px) {
+@media (min-width: 900px) {
   .hero {
-    padding: 120px 16px 60px;
+    justify-content: flex-start;
   }
 
-  .hero-logo {
-    width: 220px;
-  }
-
-  .hero-title-main {
-    font-size: 42px;
-  }
-
-  .hero-title-sub {
-    font-size: 26px;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero {
-    padding: 110px 14px 50px;
-  }
-
-  .hero-logo {
-    width: 180px;
-  }
-
-  .hero-title-main {
+  .hero-title {
     font-size: 32px;
   }
 
-  .hero-title-sub {
-    font-size: 20px;
+  .hero-text,
+  .hero-description {
+    font-size: 18px;
+  }
+}
+
+/* брейкпоинт как у хедера */
+@media (max-width: 940px) {
+  .hero-inner {
+    padding: 0 14px; /* как .header-inner */
+  }
+}
+
+/* планшеты / небольшие экраны */
+@media (max-width: 768px) {
+  .hero {
+    padding: 96px 16px 56px;
+    text-align: center;
   }
 
-  .hero-cta {
-    padding: 12px 32px;
-    font-size: 16px;
+  .hero-inner {
+    padding: 0 16px;
+    justify-content: center;
+  }
+
+  .hero-content {
+    align-items: center;
+  }
+
+  .hero-pill {
+    margin: 0 auto;
+  }
+
+  .hero-title {
+    font-size: 26px;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+}
+
+/* телефоны */
+@media (max-width: 480px) {
+  .hero {
+    padding: 88px 14px 46px;
+  }
+
+  .hero-title {
+    font-size: 22px;
+  }
+
+  .hero-text,
+  .hero-description {
+    font-size: 15px;
+  }
+
+  .hero-cta-main,
+  .hero-cta-ghost {
+    width: 100%;
+    justify-content: center;
   }
 }

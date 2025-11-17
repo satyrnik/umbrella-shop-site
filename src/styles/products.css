@@ -1,126 +1,273 @@
-/* ================ PRODUCTS SECTION ================ */
+/* ================== PRODUCTS SECTION ================== */
 
 .products {
-  background: #ffffff;
-  color: #111;
-  font-family: var(--font-ui, "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif);
-  padding: 20px 16px 90px;
-
-  /* чтобы при клике по меню блок не заезжал под fixed-хедер */
-  scroll-margin-top: 110px;
+  position: relative;
+  padding: 30px 20px 96px;
+  color: #050509;
+  font-family: var(
+    --font-ui,
+    "Montserrat",
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    Arial,
+    sans-serif
+  );
+  background: transparent;
+  overflow: hidden; /* чтобы фон не вылезал */
 }
+
+/* фоновое изображение + затемнение в стиле hero */
+.products::before {
+  content: "";
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  bottom: -40px;
+  left: -40px;
+  z-index: 0;
+
+  background:
+    /* 1 — красный мягкий луч в левом верхнем углу (как в HERO) */
+    radial-gradient(circle at 20% 30%, rgba(220, 24, 40, 0.30), transparent 55%),
+
+    /* 2 — тот же боковой затемняющий градиент слева направо */
+    linear-gradient(
+      90deg,
+      rgba(5, 7, 20, 0.96),
+      rgba(5, 7, 20, 0.70),
+      rgba(5, 7, 20, 0.25)
+    ),
+
+    /* 3 — твоя картинка с конвейером */
+    url("/img/products/conveyor-bg.jpg") center top / cover no-repeat;
+
+  pointer-events: none;
+}
+
 
 .products-inner {
-  max-width: 1120px;
+  max-width: 1180px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1; /* контент поверх фонового слоя */
 }
 
-/* ABOUT блок сверху */
+/* ======= TOP HEAD (PRODUCTS) ======= */
 
-.products-about {
+.products-head {
   text-align: center;
-  margin-bottom: 52px;
+  max-width: 780px;
+  margin: 0 auto 40px;
 }
 
-.products-about-title {
-  margin: 0 0 18px;
-  font-size: 22px;
-  letter-spacing: 0.16em;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: #b0181d;
-}
-
-.products-about-text {
-  margin: 0 auto;
-  max-width: 720px;
-  font-size: 16px;
-  line-height: 1.7;
-  color: #41464f;
-}
-
-/* Сетка продуктов */
-
-.products-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 52px 36px;
-}
-
-.product-card {
-  text-align: center;
-}
-
-/* ===== ВЫРОВНЯЕМ КАРТИНКИ ===== */
-/* делаем “полку”: все коробки стоят на одном уровне */
-
-.product-image-wrap {
-  width: 100%;
-  height: 210px;              /* фиксированная высота области под фото */
-  display: flex;
+.products-tag {
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
-  align-items: flex-end;      /* выравниваем по нижнему краю */
+  padding: 4px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #e6e6e6;
+  margin-bottom: 14px;
+}
+
+.products-title {
+  font-family: var(--font-logo, "Orbitron", "Montserrat", system-ui);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 24px;
+  margin-bottom: 14px;
+  color: #ffffff;
+}
+
+.products-text {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #e6e6e6;
+}
+
+/* ======= CHESS LAYOUT BLOCKS ======= */
+
+.products-list {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* one row (image + text) */
+.products-row {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+/* reverse row for chess layout */
+.products-row--reverse {
+  flex-direction: row-reverse;
+}
+
+.products-photo-col,
+.products-text-col {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+/* ======= PHOTO CARD ======= */
+
+.products-photo-card {
+  position: relative;
+  border-radius: 22px;
+  overflow: hidden;
+
+  /* убираем белый фон и белые рамки */
+  background: rgba(0, 0, 0, 0.05);
+  border: none;
+
+  /* более киношная тёмная тень */
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+
+  transform: translateY(0);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.products-row:hover .products-photo-card {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 50px rgba(220, 20, 30, 0.45); /* красноватый неон */
+}
+
+
+.products-row:hover .products-photo-card {
+  transform: translateY(-4px);
+  box-shadow: 0 22px 44px rgba(5, 7, 20, 0.22);
+  border-color: rgba(176, 24, 29, 0.55);
+}
+
+.products-photo-badge {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  z-index: 2;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: rgba(5, 7, 20, 0.78);
+  color: #ffffff;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* картинка полностью заполняет рамку */
+.products-photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ======= TEXT COLUMN ======= */
+
+.product-name {
+  font-family: var(--font-logo, "Orbitron", "Montserrat", system-ui);
+  font-size: 20px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+.product-subtitle {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #e6e6e6;
   margin-bottom: 16px;
 }
 
-.product-image {
-  max-height: 100%;           /* вписываем по высоте */
-  width: auto;                /* ширина подстраивается */
-  object-fit: contain;
+.product-description {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #e6e6e6;
+  margin-bottom: 14px;
 }
 
-/* ===== ТЕКСТ ПОД КАРТИНКОЙ ===== */
-
-.product-name {
-  margin: 4px 0 6px;
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  min-height: 26px;           /* чтобы однострочные/двухстрочные имена не прыгали */
-}
-
-.product-line {
+.product-bullets {
+  list-style: none;
+  padding: 0;
   margin: 0;
-  font-size: 15px;
-  line-height: 1.4;
-  color: #555a61;
-  min-height: 40px;           /* выравниваем подписи по высоте */
+  font-size: 13px;
+  line-height: 1.7;
+  color: #e6e6e6;
 }
 
-/* ================ АДАПТИВ ================ */
+.product-bullets li {
+  position: relative;
+  padding-left: 18px;
+}
 
-@media (max-width: 900px) {
+.product-bullets li + li {
+  margin-top: 6px;
+}
+
+/* белые кружки вместо красных */
+.product-bullets li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: #ffffff;
+}
+
+/* ======= RESPONSIVE ======= */
+
+@media (max-width: 992px) {
   .products {
-    padding: 70px 16px 80px;
-    scroll-margin-top: 96px;
+    padding: 30px 16px 72px;
   }
 
-  .products-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 40px 28px;
-  }
-
-  .product-image-wrap {
-    height: 190px;
+  .products-row,
+  .products-row--reverse {
+    flex-direction: column;
+    gap: 22px;
   }
 }
 
 @media (max-width: 640px) {
   .products {
-    padding: 60px 14px 70px;
-    scroll-margin-top: 88px;
+    padding: 30px 14px 60px;
   }
 
-  .products-about {
-    margin-bottom: 40px;
+  .products-title {
+    font-size: 20px;
   }
 
-  .products-grid {
-    grid-template-columns: 1fr;
-    gap: 36px;
+  .product-name {
+    font-size: 18px;
   }
 
-  .product-image-wrap {
-    height: 210px;
+  .product-description,
+  .product-bullets {
+    font-size: 13px;
   }
 }
+
+
+#products.section-anim,
+#products.section-visible {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
+
+
+
+
