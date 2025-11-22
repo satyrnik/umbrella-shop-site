@@ -1,0 +1,12 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <rect width="64" height="64" fill="#FFFFFF"></rect>
+  <!-- красные полосы -->
+  <rect y="4" width="64" height="6" fill="#B22234"></rect>
+  <rect y="14" width="64" height="6" fill="#B22234"></rect>
+  <rect y="24" width="64" height="6" fill="#B22234"></rect>
+  <rect y="34" width="64" height="6" fill="#B22234"></rect>
+  <rect y="44" width="64" height="6" fill="#B22234"></rect>
+  <rect y="54" width="64" height="6" fill="#B22234"></rect>
+  <!-- синий кантон -->
+  <rect width="26" height="26" fill="#3C3B6E"></rect>
+</svg>

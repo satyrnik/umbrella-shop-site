@@ -1,4 +1,6 @@
+// src/App.jsx
 import React, { useEffect, useState } from "react";
+import { I18nProvider, useI18n, AVAILABLE_LANGS } from "./i18n";
 
 import Hero from "./components/Hero";
 import Products from "./components/Products";
@@ -13,8 +15,19 @@ import "./styles/hero.css";
 import "./styles/quality.css";
 import "./styles/certificates.css";
 
-export default function App() {
+const LANG_LABEL = {
+  en: "English",
+  ru: "Русский",
+  de: "Deutsch",
+  es: "Español",
+  fr: "Français",
+};
+
+function AppInner() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [langOpen, setLangOpen] = useState(false);
+
+  const { t, lang, setLang } = useI18n();
 
   useEffect(() => {
     const ids = ["hero", "products", "quality", "certificates", "about"];
@@ -25,7 +38,6 @@ export default function App() {
 
     const links = Array.from(document.querySelectorAll(".nav .nav-link"));
 
-    // базовый класс для анимации секций
     sections.forEach((section) => {
       section.classList.add("section-anim");
     });
@@ -37,7 +49,6 @@ export default function App() {
       if (link) link.classList.add("active");
     };
 
-    // IntersectionObserver — только анимация появления
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -54,7 +65,6 @@ export default function App() {
 
     sections.forEach((s) => io.observe(s));
 
-    // живой header + логика активного пункта меню по скроллу
     const headerEl = document.getElementById("site-header");
 
     const handleScroll = () => {
@@ -94,7 +104,6 @@ export default function App() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
 
-    // если зашли сразу по якорю (#products и т.п.)
     const initialHash = window.location.hash.replace("#", "");
     if (initialHash) {
       const target = document.getElementById(initialHash);
@@ -111,8 +120,13 @@ export default function App() {
   }, []);
 
   const handleNavClick = () => {
-    // закрываем бургер после выбора пункта
     setMenuOpen(false);
+    setLangOpen(false);
+  };
+
+  const handleLangSelect = (code) => {
+    setLang(code);
+    setLangOpen(false);
   };
 
   return (
@@ -122,6 +136,7 @@ export default function App() {
         className={`header ${menuOpen ? "header--menu-open" : ""}`}
       >
         <div className="header-inner">
+          {/* ЛОГОТИП */}
           <a href="#hero" className="logo" aria-label="Umbrella Shop">
             <img
               src="/umbrella-logo.png"
@@ -133,39 +148,139 @@ export default function App() {
             </span>
           </a>
 
-          {/* Бургер для мобильных */}
-          <button
-            type="button"
-            className={`nav-toggle ${menuOpen ? "nav-toggle--open" : ""}`}
-            aria-label="Toggle navigation"
-            onClick={() => setMenuOpen((v) => !v)}
-          >
-            <span className="nav-toggle-line" />
-            <span className="nav-toggle-line" />
-            <span className="nav-toggle-line" />
-          </button>
+          {/* ЯЗЫКОВОЙ СВИЧЕР ДЛЯ МОБИЛКИ — в правом верхнем углу бургера */}
+          {menuOpen && (
+            <div className="nav-lang-floating-mobile">
+              <button
+                type="button"
+                className="lang-btn-main lang-btn-main--mobile"
+                onClick={() => setLangOpen((v) => !v)}
+              >
+                <span className="lang-flag">
+                  <img
+                    src={`/img/flags/${lang}.svg`}
+                    alt={LANG_LABEL[lang] || lang.toUpperCase()}
+                  />
+                </span>
+                <span className="lang-label">
+                  {LANG_LABEL[lang] || lang.toUpperCase()}
+                </span>
+                <span className="lang-caret">▾</span>
+              </button>
 
+              {langOpen && (
+                <div className="lang-dropdown lang-dropdown--mobile">
+                  {AVAILABLE_LANGS.map((l) => (
+                    <button
+                      key={l.code}
+                      type="button"
+                      className={
+                        l.code === lang
+                          ? "lang-option lang-option--active"
+                          : "lang-option"
+                      }
+                      onClick={() => handleLangSelect(l.code)}
+                    >
+                      <span className="lang-option-flag">
+                        <img
+                          src={`/img/flags/${l.code}.svg`}
+                          alt={LANG_LABEL[l.code] || l.label}
+                        />
+                      </span>
+                      <span className="lang-option-label">
+                        {LANG_LABEL[l.code] || l.label}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* НАВИГАЦИЯ */}
           <nav className={`nav ${menuOpen ? "nav--open" : ""}`}>
             <a href="#hero" className="nav-link" onClick={handleNavClick}>
-              Main
+              {t("nav.main") ?? "Main"}
             </a>
             <a href="#products" className="nav-link" onClick={handleNavClick}>
-              Products
+              {t("nav.products") ?? "Products"}
             </a>
             <a href="#quality" className="nav-link" onClick={handleNavClick}>
-              Quality
+              {t("nav.quality") ?? "Quality"}
             </a>
             <a
               href="#certificates"
               className="nav-link"
               onClick={handleNavClick}
             >
-              Certificates
+              {t("nav.certificates") ?? "Certificates"}
             </a>
             <a href="#about" className="nav-link" onClick={handleNavClick}>
-              About us
+              {t("nav.about") ?? "About us"}
             </a>
           </nav>
+
+          {/* БУРГЕР */}
+          <button
+            type="button"
+            className={`nav-toggle ${menuOpen ? "nav-toggle--open" : ""}`}
+            aria-label="Toggle navigation"
+            onClick={() => {
+              setMenuOpen((v) => !v);
+              setLangOpen(false);
+            }}
+          >
+            <span className="nav-toggle-line" />
+            <span className="nav-toggle-line" />
+            <span className="nav-toggle-line" />
+          </button>
+
+          {/* ДЕСКТОПНЫЙ ЯЗЫКОВОЙ СВИЧЕР (право хедера) */}
+          <div className="header-lang-floating">
+            <button
+              type="button"
+              className="lang-btn-main"
+              onClick={() => setLangOpen((v) => !v)}
+            >
+              <span className="lang-flag">
+                <img
+                  src={`/img/flags/${lang}.svg`}
+                  alt={LANG_LABEL[lang] || lang.toUpperCase()}
+                />
+              </span>
+              <span className="lang-label">
+                {LANG_LABEL[lang] || lang.toUpperCase()}
+              </span>
+              <span className="lang-caret">▾</span>
+            </button>
+
+            {langOpen && (
+              <div className="lang-dropdown">
+                {AVAILABLE_LANGS.map((l) => (
+                  <button
+                    key={l.code}
+                    type="button"
+                    className={
+                      l.code === lang
+                        ? "lang-option lang-option--active"
+                        : "lang-option"
+                    }
+                    onClick={() => handleLangSelect(l.code)}
+                  >
+                    <span className="lang-option-flag">
+                      <img
+                        src={`/img/flags/${l.code}.svg`}
+                        alt={LANG_LABEL[l.code] || l.label}
+                      />
+                    </span>
+                    <span className="lang-option-label">
+                      {LANG_LABEL[l.code] || l.label}
+                    </span>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       </header>
 
@@ -178,5 +293,13 @@ export default function App() {
 
       <Footer />
     </>
+  );
+}
+
+export default function App() {
+  return (
+    <I18nProvider>
+      <AppInner />
+    </I18nProvider>
   );
 }

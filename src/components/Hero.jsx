@@ -1,42 +1,52 @@
 // src/components/Hero.jsx
 import React from "react";
+import "../styles/hero.css";
+import { useI18n } from "../i18n";
 
 export default function Hero() {
+  const { t } = useI18n();
+
   return (
-    <section id="hero" className="hero">
-      {/* затемняющий градиент поверх фона */}
+    <section id="hero" className="hero section-anim">
+      {/* затемняющий/красный градиент поверх фона */}
       <div className="hero-overlay" />
 
       <div className="hero-inner">
+        {/* Основной контент слева (как в CSS .hero-content) */}
         <div className="hero-content">
-          <span className="hero-pill">
-            Umbrella Pharmaceuticals • Research Division
-          </span>
+          {/* Бейдж-сабтайтл — .hero-pill */}
+          <div className="hero-pill">
+            {t("hero.tag")}
+          </div>
 
+          {/* Заголовок — .hero-title + красное слово UMBRELLA */}
           <h1 className="hero-title">
-            Laboratory-grade <span className="hero-red">UMBRELLA</span> protocols
-            for elite performance and recovery
+            <span className="hero-title-main">
+              {t("hero.titleMain")}
+              <span className="hero-red">Umbrella</span>
+              {t("hero.titleTail")}
+            </span>
           </h1>
 
-          <p className="hero-description">
-            Closed pharmaceutical R&amp;D, peptide and hormone protocols built to
-            Umbrella Labs quality standards. Only verified compounds, strict
-            batch control, and full documentation for every vial.
+          {/* Основный текст — .hero-text (под заголовком) */}
+          <p className="hero-text">
+            {t("hero.text")}
           </p>
 
+          {/* Кнопки — .hero-actions + .hero-cta-main / .hero-cta-ghost */}
           <div className="hero-actions">
             <a href="#products" className="hero-cta-main">
-              View products
+              {t("hero.ctaPrimary")}
             </a>
 
             <a href="#about" className="hero-cta-ghost">
-              About company
+              {t("hero.ctaSecondary")}
             </a>
           </div>
 
+          {/* Примечание внизу — .hero-note */}
           <p className="hero-note">
-            For research use only. Not intended as a medicinal product.
-            Available exclusively to qualified professionals.
+            {t("hero.note")}
           </p>
         </div>
       </div>
