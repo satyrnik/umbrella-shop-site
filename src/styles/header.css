@@ -455,7 +455,7 @@
 }
 
 /* бургер и mobile-режим с 1270px (можешь подстроить под глаз) */
-@media (max-width: 1200px) {
+@media (max-width: 1220px) {
   #site-header.header {
     height: 78px;
     min-height: 78px;
