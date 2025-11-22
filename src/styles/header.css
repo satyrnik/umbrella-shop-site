@@ -525,3 +525,36 @@
 }
 
 
+/* СУПЕР-УЗКИЕ ЭКРАНЫ — ЧТОБЫ БУРГЕР НЕ ЗАЕЗЖАЛ НА ЛОГО */
+@media (max-width: 480px) {
+  #site-header.header {
+    height: 72px;
+    min-height: 72px;
+  }
+
+  .header-inner {
+    padding: 8px 10px;
+    gap: 8px;
+  }
+
+  .logo {
+    gap: 8px;
+  }
+
+  .logo-img {
+    width: 44px;
+    height: 44px;
+  }
+
+  .logo-title {
+    font-size: 18px;
+    letter-spacing: 0.10em;
+  }
+
+  .nav-toggle {
+    width: 34px;
+    height: 28px;
+  }
+}
+
+
