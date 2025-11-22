@@ -527,10 +527,6 @@
 
 /* СУПЕР-УЗКИЕ ЭКРАНЫ — ЧТОБЫ БУРГЕР НЕ ЗАЕЗЖАЛ НА ЛОГО */
 @media (max-width: 480px) {
-  #site-header.header {
-    height: 72px;
-    min-height: 72px;
-  }
 
   .header-inner {
     padding: 8px 10px;
