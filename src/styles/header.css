@@ -3,11 +3,11 @@
    ============================================================ */
 
 @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Montserrat:wght@500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Play:wght@500;600;700&display=swap&subset=latin,cyrillic");
 
 :root {
-  --font-ui: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, Arial,
-    sans-serif;
-  --font-logo: "Orbitron", "Montserrat", sans-serif;
+  --font-ui: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-logo: "Orbitron", "Play", "Montserrat", sans-serif;
 
   --accent: #b0181d;
   --border-soft: #e9e9ee;
@@ -162,6 +162,7 @@
 
 .nav {
   margin-left: auto;
+  padding-left: 32px;
   display: flex;
   gap: 24px;
   text-transform: uppercase;
@@ -227,7 +228,6 @@
 
 /* десктопная кнопка языков теперь обычный flex-элемент в header-inner */
 .header-lang-floating {
-  margin-left: 16px;
   display: flex;
   align-items: center;
   position: relative; /* для дропдауна */
@@ -279,9 +279,13 @@
     0 0 18px rgba(176, 24, 29, 0.5);
 }
 
+.lang-flag {
+  flex: 0 0 auto;
+}
+
 .lang-flag img {
-  width: 16px;
-  height: 16px;
+  height: 16px;      /* фиксируем только высоту */
+  width: auto;       /* ширина по естественным пропорциям флага */
   border-radius: 999px;
   object-fit: cover;
   display: block;
@@ -301,7 +305,7 @@
   top: calc(100% + 6px);
   right: 0;
 
-  min-width: 160px;
+  min-width: 90px;
   padding: 6px 4px;
 
   background: rgba(5, 5, 9, 0.98);
@@ -552,5 +556,7 @@
     height: 28px;
   }
 }
+
+
 
 

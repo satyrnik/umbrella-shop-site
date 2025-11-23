@@ -95,11 +95,19 @@
 }
 
 .footer-title {
+  font-family: var(--font-logo);
   font-size: 20px;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.06em;
+  color: #ffffff;
 }
+
+.footer-title-red {
+  color: var(--accent); /* тот же красный что в хедере */
+  text-shadow: 0 0 6px rgba(176,24,29,0.45);
+}
+
 
 .footer-slogan {
   font-size: 14px;
@@ -107,26 +115,33 @@
   max-width: 320px;
 }
 
-/* ==== ЛОГО (неон лёгкий) ==== */
+/* ==== ЛОГОГТИП — НЕОН + ПУЛЬС (как в хедере) ==== */
 .footer-logo {
-  width: 48px;
-  height: 48px;
+  width: 52px;
+  height: 52px;
   filter:
-    drop-shadow(0 0 4px rgba(225, 6, 0, 0.3))
-    drop-shadow(0 0 8px rgba(225, 6, 0, 0.15));
-  animation: footerLogoPulse 4s ease-in-out infinite;
-  transition: transform 0.25s ease;
+    drop-shadow(0 0 4px rgba(176, 24, 29, 0.65))
+    drop-shadow(0 0 10px rgba(176, 24, 29, 0.45))
+    drop-shadow(0 0 18px rgba(176, 24, 29, 0.35));
+  transition: transform .35s ease, filter .35s ease;
+  animation: footerLogoPulse 3.2s ease-in-out infinite;
+  transform-origin: center;
 }
 
 .footer-logo:hover {
-  transform: scale(1.07);
+  transform: scale(1.09) rotate(-3deg);
+  filter:
+    drop-shadow(0 0 5px rgba(200, 26, 33, 0.9))
+    drop-shadow(0 0 15px rgba(200, 26, 33, 0.7))
+    drop-shadow(0 0 36px rgba(200, 26, 33, 0.5));
 }
 
 @keyframes footerLogoPulse {
-  0% { opacity: 0.82; }
-  50% { opacity: 1; }
-  100% { opacity: 0.82; }
+  0%   { opacity: .88; transform: scale(1); }
+  48%  { opacity: 1;   transform: scale(1.03); }
+  100% { opacity: .88; transform: scale(1); }
 }
+
 
 /* ==== Нижняя строка ==== */
 .footer-bottom {

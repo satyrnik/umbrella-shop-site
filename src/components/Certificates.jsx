@@ -1,78 +1,86 @@
 // src/components/Certificates.jsx
 import React from "react";
 import "../styles/certificates.css";
+import { useI18n } from "../i18n";
 
 export default function Certificates() {
+  const { t } = useI18n();
+
   return (
     <section className="certificates" id="certificates">
       <div className="certificates-inner">
-        {/* ЛЕВАЯ КОЛОНКА — ТЕКСТ */}
+
         <div className="certificates-left">
-          <span className="certificates-kicker">Documentation</span>
+          <span className="certificates-kicker">{t("certificates.kicker")}</span>
+
           <h2 className="certificates-title">
-            Certificates &amp; lab reports for every batch
+            {t("certificates.title")}
           </h2>
+
           <p className="certificates-subtitle">
-            Each production lot is backed by analytical reports and internal
-            documentation, confirming identity, purity and consistency.
+            {t("certificates.subtitle")}
           </p>
 
           <ul className="certificates-list">
-            <li>Certificate of Analysis (CoA) per batch</li>
-            <li>HPLC chromatograms confirming purity</li>
-            <li>MS profiles for identity verification</li>
-            <li>Internal QC logs and release forms</li>
+            <li>{t("certificates.list.0")}</li>
+            <li>{t("certificates.list.1")}</li>
+            <li>{t("certificates.list.2")}</li>
+            <li>{t("certificates.list.3")}</li>
           </ul>
         </div>
 
-        {/* ПРАВАЯ КОЛОНКА — КАРТОЧКИ "ДОКУМЕНТОВ" */}
+
         <div className="certificates-right">
+
           <article className="cert-card">
-            <div className="cert-card-ribbon">Batch CoA</div>
+            <div className="cert-card-ribbon">{t("certificates.card1.ribbon")}</div>
             <div className="cert-card-header">
               <span className="cert-card-label">BPC-157</span>
               <span className="cert-card-id">Lot #BPC-24-017</span>
             </div>
             <div className="cert-card-body">
-              <p>Purity: 99.2% (HPLC)</p>
-              <p>Identity: MS confirmed</p>
-              <p>Solvent content: &lt; 0.5%</p>
+              <p>{t("certificates.card1.p1")}</p>
+              <p>{t("certificates.card1.p2")}</p>
+              <p>{t("certificates.card1.p3")}</p>
             </div>
             <div className="cert-card-footer">
-              <span className="cert-card-link">View sample report</span>
+              <span className="cert-card-link">{t("certificates.card1.link")}</span>
             </div>
           </article>
 
+
           <article className="cert-card">
-            <div className="cert-card-ribbon">HPLC report</div>
+            <div className="cert-card-ribbon">{t("certificates.card2.ribbon")}</div>
             <div className="cert-card-header">
               <span className="cert-card-label">Semaglutide</span>
               <span className="cert-card-id">Lot #SEM-25-004</span>
             </div>
             <div className="cert-card-body">
-              <p>Purity: 98.7% (HPLC)</p>
-              <p>Retention time: 8.42 min</p>
-              <p>Impurities: &lt; 1.0%</p>
+              <p>{t("certificates.card2.p1")}</p>
+              <p>{t("certificates.card2.p2")}</p>
+              <p>{t("certificates.card2.p3")}</p>
             </div>
             <div className="cert-card-footer">
-              <span className="cert-card-link">View chromatogram</span>
+              <span className="cert-card-link">{t("certificates.card2.link")}</span>
             </div>
           </article>
 
+
           <article className="cert-card cert-card--wide">
             <div className="cert-holo-strip" />
-            <h3 className="cert-card-title">GMP-inspired workflow</h3>
-            <p className="cert-card-text">
-              Internal documentation tracks every critical step: synthesis,
-              purification, filtration, vialing and final release.
-            </p>
+            <h3 className="cert-card-title">{t("certificates.card3.title")}</h3>
+
+            <p className="cert-card-text">{t("certificates.card3.text")}</p>
+
             <div className="cert-badges-row">
-              <span className="cert-badge">QC checklist</span>
-              <span className="cert-badge">Temperature logs</span>
-              <span className="cert-badge">Signed release</span>
+              <span className="cert-badge">{t("certificates.card3.badges.0")}</span>
+              <span className="cert-badge">{t("certificates.card3.badges.1")}</span>
+              <span className="cert-badge">{t("certificates.card3.badges.2")}</span>
             </div>
           </article>
+
         </div>
+
       </div>
     </section>
   );

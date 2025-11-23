@@ -1,76 +1,79 @@
 // src/sections/Quality.jsx
 import React from "react";
-import "../styles/quality.css"; // поправь путь, если у тебя другая структура
+import "../styles/quality.css";
+import { useI18n } from "../i18n";
 
 export default function Quality() {
+  const { t } = useI18n();
+
   return (
     <section className="quality" id="quality">
       <div className="quality-inner">
-        {/* Левый блок — текст + описание */}
+
         <div className="quality-left">
-          <span className="quality-kicker">Quality &amp; Safety</span>
+          <span className="quality-kicker">{t("quality.kicker")}</span>
+
           <h2 className="quality-title">
-            Laboratory-grade quality with red-line control
+            {t("quality.title")}
           </h2>
+
           <p className="quality-subtitle">
-            Each vial is produced under strict laboratory conditions, with every
-            batch passing advanced testing before release.
+            {t("quality.subtitle")}
           </p>
 
           <div className="quality-badges">
             <div className="quality-badge">
-              <span className="quality-badge-label">99%+ purity</span>
-              <span className="quality-badge-sub">HPLC verified</span>
+              <span className="quality-badge-label">{t("quality.badge1.label")}</span>
+              <span className="quality-badge-sub">{t("quality.badge1.sub")}</span>
             </div>
+
             <div className="quality-badge">
-              <span className="quality-badge-label">Multi-step QC</span>
-              <span className="quality-badge-sub">Every lot checked</span>
+              <span className="quality-badge-label">{t("quality.badge2.label")}</span>
+              <span className="quality-badge-sub">{t("quality.badge2.sub")}</span>
             </div>
           </div>
         </div>
 
-        {/* Правый блок — карточки с “голограммами” */}
+        {/* right */}
         <div className="quality-right">
+
           <article className="quality-card">
             <div className="quality-holo-ring quality-holo-ring--top" />
             <div className="quality-holo-line quality-holo-line--left" />
 
-            <h3 className="quality-card-title">Sterile environment</h3>
-            <p className="quality-card-text">
-              Vials are filled and sealed in a controlled clean-room environment
-              with aseptic procedures.
-            </p>
+            <h3 className="quality-card-title">{t("quality.card1.title")}</h3>
+            <p className="quality-card-text">{t("quality.card1.text")}</p>
           </article>
+
 
           <article className="quality-card">
             <div className="quality-holo-ring quality-holo-ring--bottom" />
             <div className="quality-holo-line quality-holo-line--right" />
 
-            <h3 className="quality-card-title">99%+ purity</h3>
-            <p className="quality-card-text">
-              Each batch is screened using HPLC and MS to confirm maximum
-              peptide purity and identity.
-            </p>
+            <h3 className="quality-card-title">{t("quality.card2.title")}</h3>
+            <p className="quality-card-text">{t("quality.card2.text")}</p>
           </article>
+
 
           <article className="quality-card quality-card--wide">
             <div className="quality-holo-orbit" />
             <div className="quality-holo-grid" />
 
-            <h3 className="quality-card-title">
-              Red-line holographic tracking
-            </h3>
+            <h3 className="quality-card-title">{t("quality.card3.title")}</h3>
+
             <p className="quality-card-text">
-              Every vial is linked to an internal batch ID, enabling precise
-              tracking across production, testing and release.
+              {t("quality.card3.text")}
             </p>
+
             <ul className="quality-list">
-              <li>Unique batch identifier</li>
-              <li>Timestamped production stages</li>
-              <li>Archived lab reports per lot</li>
+              {t("quality.card3.bullets").map((b, i) => (
+                <li key={i}>{b}</li>
+              ))}
             </ul>
           </article>
+
         </div>
+
       </div>
     </section>
   );

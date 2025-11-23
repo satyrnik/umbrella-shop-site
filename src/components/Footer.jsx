@@ -1,12 +1,16 @@
+// src/components/Footer.jsx
 import React from "react";
 import "../styles/footer.css";
+import { useI18n } from "../i18n";
 
 export default function Footer() {
+  const { t } = useI18n();
+
   return (
     <footer className="footer" id="about">
       <div className="footer-inner">
 
-        {/* === Бренд === */}
+        {/* BRAND */}
         <div className="footer-brand">
           <img
             src="/umbrella-logo.png"
@@ -15,16 +19,20 @@ export default function Footer() {
           />
 
           <div className="footer-brand-text">
-            <div className="footer-title">UMBRELLA SHOP</div>
+            <div className="footer-title">
+              <span className="footer-title-red">UMBRELLA</span> SHOP
+            </div>
             <p className="footer-slogan">
-              Pharmaceutical-grade performance compounds & research solutions.
+              {t("footer.slogan")}
             </p>
           </div>
         </div>
 
-        {/* === Контакты === */}
+
+        {/* CONTACTS */}
         <div className="footer-contacts">
-          <h3>Contacts</h3>
+          <h3>{t("footer.contacts.title")}</h3>
+
           <ul>
             <li>
               <span className="icon-text">📧</span>
@@ -36,7 +44,7 @@ export default function Footer() {
             <li>
               <span className="icon-text">💬</span>
               <a href="https://t.me/" target="_blank" rel="noreferrer">
-                @umbrella_support
+                {t("footer.contacts.telegram")}
               </a>
             </li>
 
@@ -49,9 +57,11 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* === Социальные сети === */}
+
+        {/* SOCIAL */}
         <div className="footer-socials">
-          <h3>Follow us</h3>
+          <h3>{t("footer.social.title")}</h3>
+
           <ul>
             <li>
               <a href="https://instagram.com" target="_blank" rel="noreferrer">
@@ -78,7 +88,7 @@ export default function Footer() {
       </div>
 
       <div className="footer-bottom">
-        <p>© {new Date().getFullYear()} Umbrella Shop. All rights reserved.</p>
+        <p>{t("footer.bottom")}</p>
       </div>
     </footer>
   );

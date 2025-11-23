@@ -16,12 +16,14 @@ import "./styles/quality.css";
 import "./styles/certificates.css";
 
 const LANG_LABEL = {
-  en: "English",
-  ru: "Русский",
-  de: "Deutsch",
-  es: "Español",
-  fr: "Français",
+  en: "EN",
+  ru: "RU",
+  de: "DE",
+  es: "ES",
+  fr: "FR",
+  it: "IT",
 };
+
 
 function AppInner() {
   const [menuOpen, setMenuOpen] = useState(false);
