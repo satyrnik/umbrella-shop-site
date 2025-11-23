@@ -6,6 +6,7 @@ import Hero from "./components/Hero";
 import Products from "./components/Products";
 import Quality from "./components/Quality";
 import Certificates from "./components/Certificates";
+import Verify from "./components/Verify";
 import Footer from "./components/Footer";
 
 // стили
@@ -14,6 +15,7 @@ import "./styles/sections.css";
 import "./styles/hero.css";
 import "./styles/quality.css";
 import "./styles/certificates.css";
+import "./styles/verify.css";
 
 const LANG_LABEL = {
   en: "EN",
@@ -24,7 +26,6 @@ const LANG_LABEL = {
   it: "IT",
 };
 
-
 function AppInner() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
@@ -32,7 +33,8 @@ function AppInner() {
   const { t, lang, setLang } = useI18n();
 
   useEffect(() => {
-    const ids = ["hero", "products", "quality", "certificates", "about"];
+    // тут только реальные секции страницы
+    const ids = ["hero", "products", "quality", "certificates", "verify"];
 
     const sections = ids
       .map((id) => document.getElementById(id))
@@ -150,7 +152,7 @@ function AppInner() {
             </span>
           </a>
 
-          {/* ЯЗЫКОВОЙ СВИЧЕР ДЛЯ МОБИЛКИ — в правом верхнем углу бургера */}
+          {/* ЯЗЫКОВОЙ СВИЧЕР ДЛЯ МОБИЛКИ — внутри раскрытого меню */}
           {menuOpen && (
             <div className="nav-lang-floating-mobile">
               <button
@@ -217,8 +219,8 @@ function AppInner() {
             >
               {t("nav.certificates") ?? "Certificates"}
             </a>
-            <a href="#about" className="nav-link" onClick={handleNavClick}>
-              {t("nav.about") ?? "About us"}
+            <a href="#verify" className="nav-link" onClick={handleNavClick}>
+              {t("nav.verify") ?? "Verify"}
             </a>
           </nav>
 
@@ -291,6 +293,7 @@ function AppInner() {
         <Products />
         <Quality />
         <Certificates />
+        <Verify />
       </main>
 
       <Footer />

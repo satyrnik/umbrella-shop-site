@@ -28,6 +28,7 @@ const translations = {
       quality: "Quality",
       certificates: "Certificates",
       about: "About us",
+      verify: "Verify",
     },
 
     hero: {
@@ -167,6 +168,18 @@ const translations = {
         badges: ["QC checklist", "Temperature logs", "Signed release"],
       },
     },
+    verify: {
+  title: "Product authenticity check",
+  subtitle:
+    "Enter the code from the box to confirm that your Umbrella product is original.",
+  placeholder: "Example: ABC123456",
+  button: "Verify",
+  hint: "The code is printed on the sticker / box of your Umbrella product.",
+  ok: "✅ Code confirmed. Original Umbrella product.",
+  bad:
+    "⚠️ Code not found in the database. Check the input or contact support.",
+},
+
 
     footer: {
       slogan: "Pharmaceutical-grade performance compounds & research solutions.",
@@ -192,6 +205,7 @@ const translations = {
       quality: "Качество",
       certificates: "Сертификаты",
       about: "О нас",
+      verify: "Проверка",
     },
 
     hero: {
@@ -333,6 +347,17 @@ const translations = {
       },
     },
 
+    verify: {
+  title: "Проверка подлинности продукта",
+  subtitle: "Введите код с коробки для подтверждения оригинальности.",
+  placeholder: "Например: ABC123456",
+  button: "Проверить",
+  hint: "Код указан на коробке вашего продукта.",
+  ok: "Код подтверждён. Оригинальный продукт.",
+  bad: "Код не найден. Проверьте правильность.",
+},
+
+
     footer: {
       slogan: "Фармацевтические решения для продуктивности и исследований.",
 
@@ -357,6 +382,7 @@ const translations = {
       quality: "Qualität",
       certificates: "Zertifikate",
       about: "Über uns",
+      verify: "Überprüfung",
     },
 
     hero: {
@@ -497,6 +523,18 @@ const translations = {
       },
     },
 
+    verify: {
+  title: "Produkt-Authentizitätsprüfung",
+  subtitle: "Geben Sie den Code von der Box ein, um die Echtheit zu bestätigen.",
+  placeholder: "Zum Beispiel: ABC123456",
+  button: "Prüfen",
+  hint: "Der Code steht auf der Verpackung.",
+  ok: "Code bestätigt. Originalprodukt.",
+  bad: "Code nicht gefunden. Bitte überprüfen.",
+},
+
+
+
     footer: {
       slogan:
         "Leistungspräparate und Forschungslösungen in pharmazeutischer Qualität.",
@@ -522,6 +560,7 @@ const translations = {
       quality: "Calidad",
       certificates: "Certificados",
       about: "Sobre nosotros",
+      verify: "Verificación",
     },
 
     hero: {
@@ -666,6 +705,18 @@ const translations = {
       },
     },
 
+    verify: {
+  title: "Verificación de autenticidad del producto",
+  subtitle: "Ingrese el código de la caja para confirmar originalidad.",
+  placeholder: "Ejemplo: ABC123456",
+  button: "Verificar",
+  hint: "El código está impreso en la caja.",
+  ok: "Código confirmado. Producto original.",
+  bad: "Código no encontrado. Revise nuevamente.",
+},
+
+
+
     footer: {
       slogan:
         "Compuestos de rendimiento y soluciones de investigación de grado farmacéutico.",
@@ -691,6 +742,7 @@ const translations = {
       quality: "Qualité",
       certificates: "Certificats",
       about: "À propos",
+      verify: "Vérification",
     },
 
     hero: {
@@ -832,6 +884,18 @@ const translations = {
       },
     },
 
+    verify: {
+  title: "Vérification d’authenticité",
+  subtitle: "Entrez le code de la boîte pour confirmer l’originalité.",
+  placeholder: "Exemple : ABC123456",
+  button: "Vérifier",
+  hint: "Le code est imprimé sur la boîte.",
+  ok: "Code confirmé. Produit original.",
+  bad: "Code introuvable. Vérifiez à nouveau.",
+},
+
+
+
     footer: {
       slogan:
         "Composés de performance et solutions de recherche de qualité pharmaceutique.",
@@ -856,6 +920,7 @@ const translations = {
       quality: "Qualità",
       certificates: "Certificati",
       about: "Chi siamo",
+      verify: "Verifica",
     },
 
     hero: {
@@ -1000,6 +1065,18 @@ const translations = {
         ],
       },
     },
+
+    verify: {
+  title: "Verifica autenticità prodotto",
+  subtitle: "Inserisci il codice dalla scatola per confermare l’originalità.",
+  placeholder: "Esempio: ABC123456",
+  button: "Verifica",
+  hint: "Il codice è stampato sulla confezione.",
+  ok: "Codice confermato. Prodotto originale.",
+  bad: "Codice non trovato. Controlla di nuovo.",
+},
+
+
 
     footer: {
       slogan:
