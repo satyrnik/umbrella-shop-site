@@ -1066,7 +1066,7 @@ const translations = {
       },
     },
 
-    verify: {
+     verify: {
   title: "Verifica autenticità prodotto",
   subtitle: "Inserisci il codice dalla scatola per confermare l’originalità.",
   placeholder: "Esempio: ABC123456",
