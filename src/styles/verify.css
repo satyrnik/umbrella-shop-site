@@ -43,14 +43,16 @@
 /* -------------- TEXT --------------- */
 
 .verify-title {
-  font-family: var(--font-ui);
+  /* шрифт для заголовка проверки */
+  font-family: var(--font-logo, "Orbitron", "Montserrat", system-ui);
   font-size: 34px;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.10em;   /* чуть больше межбуквенный интервал, по-лабораторному */
   margin-bottom: 8px;
   text-transform: uppercase;
   color: #ffffff;
 }
+
 
 .verify-title span {
   color: var(--accent, #b0181d);
